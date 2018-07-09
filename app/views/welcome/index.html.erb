@@ -1,1 +1,9 @@
-<%= link_to 'GitHub Enterprise でログイン', '/auth/github' %>
+<%- if signed_in? -%>
+  こんにちは
+  <%= image_tag(current_user.avatar_url, size: '32x32') %>
+  <%= current_user.name %>
+  さん
+  <%= link_to 'ログアウト', sessions_path, method: :delete %>
+<%- else -%>
+  <%= link_to 'GitHub Enterprise でログイン', '/auth/github' %>
+<%- end -%>
