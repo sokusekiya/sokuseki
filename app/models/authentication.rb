@@ -1,5 +1,6 @@
 class Authentication < ApplicationRecord
   belongs_to :user
+  has_many :activities
 
   validates :provider, presence: true
   validates :uid, presence: true, uniqueness: { scope: :provider }
@@ -7,64 +8,31 @@ class Authentication < ApplicationRecord
   validates :access_token, presence: true
 
   def fetch_activities
-    if provider == "github"
-      client = Octokit::Client.new(access_token: access_token)
-      client.auto_paginate = true
+    return [] unless provider == "github"
 
-      events = client.user_events(name)
+    client = Octokit::Client.new(access_token: access_token)
+    client.auto_paginate = true
 
-      events.each do |event|
-        event_id = event.id
-        event_type = event.type
-        acted_at = event.created_at
-        original_data = event.payload
+    events = client.user_events(name)
 
-        url = nil
-        text = nil
+    events.each do |event|
+      activity_id = event.id.to_s
+      activity_type = event.type
 
-        case event_type
-        when "CreateEvent"
-          next
-        when "DeleteEvent"
-          next
-        when "IssueCommentEvent"
-          url = event.payload.comment.html_url
-          text = event.payload.comment.body
-        when "IssuesEvent"
-          url = event.payload.issue.html_url
-          text = event.payload.issue.title
-        when "PullRequestEvent"
-          url = event.payload.pull_request.html_url
-          text = event.payload.pull_request.title
-        when "PullRequestReviewCommentEvent"
-          url = event.payload.comment.html_url
-          text = event.payload.comment.body
-        when "PushEvent"
-          event.payload.commits.each do |commit|
-          end
+      activity = Activity.find_or_initialize_by(
+        user_id: self.user_id,
+        authentication_id: self.id,
+        activity_id: activity_id,
+        activity_type: activity_type,
+      )
 
-          next
-        when "ReleaseEvent"
-          url = event.payload.release.html_url
-          text = event.payload.release.body
-        when "WatchEvent"
-          next
-        else
-          # binding.pry
-        end
+      acted_at = event.created_at
+      original_data = event.payload
 
-        puts(
-          [
-            "#{event_type}##{event_id}",
-            acted_at.strftime("%Y-%m-%d %H:%M"),
-            url,
-            text.to_s.gsub("\r\n", "").gsub("\n", "")[0..30],
-            original_data,
-          ].join("\t")
-        )
-      end
+      activity.acted_at = acted_at
+      activity.original_data = original_data
 
-      nil
+      activity.save
     end
   end
 end
