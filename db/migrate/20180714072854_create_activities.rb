@@ -6,6 +6,7 @@ class CreateActivities < ActiveRecord::Migration[5.2]
       t.string :activity_id, null: false
       t.string :activity_type, null: false
       t.datetime :act_at, null: false
+      t.jsonb :original_data
 
       t.timestamps
     end

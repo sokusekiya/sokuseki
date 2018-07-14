@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_07_14_072854) do
     t.string "activity_id", null: false
     t.string "activity_type", null: false
     t.datetime "act_at", null: false
+    t.jsonb "original_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["act_at"], name: "index_activities_on_act_at"
