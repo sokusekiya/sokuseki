@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    omniauth = request.env['omniauth.auth']
-    provider = omniauth.dig('provider')
-    uid = omniauth.dig('uid')
+    omniauth = request.env["omniauth.auth"]
+    provider = omniauth.dig("provider")
+    uid = omniauth.dig("uid")
 
     authentication = Authentication.find_by(provider: provider, uid: uid)
 
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
   def destroy
     sign_out
 
-    redirect_to root_path
+    redirec_to root_path
   end
 end

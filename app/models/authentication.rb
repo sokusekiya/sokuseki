@@ -7,7 +7,7 @@ class Authentication < ApplicationRecord
   validates :access_token, presence: true
 
   def fetch_activities
-    if provider == 'github'
+    if provider == "github"
       client = Octokit::Client.new(access_token: access_token)
       client.auto_paginate = true
 
@@ -23,50 +23,43 @@ class Authentication < ApplicationRecord
         text = nil
 
         case event_type
-        when 'CreateEvent'
+        when "CreateEvent"
           next
-        when 'DeleteEvent'
+        when "DeleteEvent"
           next
-        when 'IssueCommentEvent'
+        when "IssueCommentEvent"
           url = event.payload.comment.html_url
           text = event.payload.comment.body
-        when 'IssuesEvent'
+        when "IssuesEvent"
           url = event.payload.issue.html_url
           text = event.payload.issue.title
-        when 'PullRequestEvent'
+        when "PullRequestEvent"
           url = event.payload.pull_request.html_url
           text = event.payload.pull_request.title
-        when 'PullRequestReviewCommentEvent'
+        when "PullRequestReviewCommentEvent"
           url = event.payload.comment.html_url
           text = event.payload.comment.body
-        when 'PushEvent'
+        when "PushEvent"
           event.payload.commits.each do |commit|
-            puts(
-              [
-                "CommitPushEvent##{commit.sha}",
-                acted_at.strftime('%Y-%m-%d %H:%M'),
-                "https://#{ENV['GHE_HOST']}/#{event.repo.name}/commit/#{commit.sha}",
-                commit.message.to_s.gsub("\r\n", '').gsub("\n", '')[0..30],
-              ].join("\t")
-            )
           end
 
           next
-        when 'ReleaseEvent'
+        when "ReleaseEvent"
           url = event.payload.release.html_url
           text = event.payload.release.body
-        when 'WatchEvent'
+        when "WatchEvent"
           next
         else
-          binding.pry
+          # binding.pry
         end
 
         puts(
           [
             "#{event_type}##{event_id}",
-            acted_at.strftime('%Y-%m-%d %H:%M'),
+            acted_at.strftime("%Y-%m-%d %H:%M"),
             url,
-            text.to_s.gsub("\r\n", '').gsub("\n", '')[0..30],
+            text.to_s.gsub("\r\n", "").gsub("\n", "")[0..30],
+            original_data,
           ].join("\t")
         )
       end

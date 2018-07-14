@@ -1,3 +1,4 @@
 Octokit.configure do |c|
-  c.api_endpoint = "https://#{ENV['GHE_HOST']}/api/v3/"
+  ghe_host = ENV["GHE_HOST"]
+  c.api_endpoint = "https://#{ghe_host}/api/v3/"
 end

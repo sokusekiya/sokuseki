@@ -5,11 +5,11 @@ class User < ApplicationRecord
   validates :avatar_url, presence: true
 
   def self.create_with(omniauth)
-    provider = omniauth.dig('provider')
-    uid = omniauth.dig('uid')
-    name = omniauth.dig('info', 'nickname')
-    avatar_url = omniauth.dig('info', 'image')
-    access_token = omniauth.dig('credentials', 'token')
+    provider = omniauth.dig("provider")
+    uid = omniauth.dig("uid")
+    name = omniauth.dig("info", "nickname")
+    avatar_url = omniauth.dig("info", "image")
+    access_token = omniauth.dig("credentials", "token")
 
     ApplicationRecord.transaction do
       user = User.create(
