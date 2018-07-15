@@ -17,7 +17,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+if Rails.env.development? || Rails.env.test?
+  Dotenv::Railtie.load
+end
 
 module Sokuseki
   class Application < Rails::Application
