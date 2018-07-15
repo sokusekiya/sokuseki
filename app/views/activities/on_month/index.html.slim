@@ -2,3 +2,13 @@ h2
   = "#{@month_string} のアクティビティ"
 p
   = "全 #{@activities.count} 件"
+h3
+  | 種類ごと
+ul
+  - @activities.group(:activity_type).count.each do |activity_type, count|
+    li
+      = "#{activity_type} : #{count}"
+h3
+  | 一覧
+ul
+  = render partial: "activities/github/event", collection: @activities.order(:acted_at), as: :activity
