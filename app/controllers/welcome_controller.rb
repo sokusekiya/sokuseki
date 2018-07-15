@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
   def index
-    @activities = current_user.activities.order(acted_at: :desc) if signed_in?
+    if signed_in?
+      @activities = current_user.activities
+    end
   end
 end

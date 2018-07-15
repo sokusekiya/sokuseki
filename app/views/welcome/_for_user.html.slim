@@ -4,11 +4,15 @@ p
   = user.name
   | さん
   = link_to "サインアウト", sessions_path, method: :delete
-p
-  | これまでに
-  = activities.count
-  | 件のアクティビティがあります
+h2
+  | 全期間のアクティビティ統計
 ul
-  - activities.each do |activity|
+  - activities.group(:activity_type).count.each do |activity_type, count|
     li
-      = "#{activity.activity_type}:#{activity.activity_id}"
+      = "#{activity_type} : #{count}"
+h2
+  | 月ごとに見る
+ul
+  - activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.each do |month_string|
+    li
+      = link_to month_string, "/activities/on/#{month_string}"
