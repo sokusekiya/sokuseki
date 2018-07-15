@@ -15,4 +15,4 @@ h2
 ul
   - activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.each do |month_string|
     li
-      = link_to month_string, "/activities/on/#{month_string}"
+      = link_to month_string, activities_on_month_path(month_string)
