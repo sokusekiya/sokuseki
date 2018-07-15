@@ -1,0 +1,156 @@
+- data = activity.original_data
+- acted_at = activity.acted_at
+
+li
+  => acted_at.strftime("%Y-%m-%d %H:%M:%S")
+  ' :
+  - case activity.activity_type
+  - when "CheckRunEvent"
+    | CheckRunEvent
+  - when "CheckSuiteEvent"
+    | CheckSuiteEvent
+  - when "CommitCommentEvent"
+    | CommitCommentEvent
+  - when "CreateEvent"
+    - case data.dig("ref_type")
+    - when "branch"
+      - branch_name = data.dig('ref')
+      - repo_name = data.dig("repo", "name")
+      - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+      ' リポジトリ
+      => link_to repo_name, repo_url
+      ' にブランチ
+      => branch_name
+      ' を作成した
+    - when "repository"
+    - when "tag"
+    - else
+      ' CreateEvent
+      = data.dig("ref_type")
+  - when "DeleteEvent"
+    - case data.dig("ref_type")
+    - when "branch"
+      - branch_name = data.dig('ref')
+      - repo_name = data.dig("repo", "name")
+      - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+      ' リポジトリ
+      => link_to repo_name, repo_url
+      ' のブランチ
+      => branch_name
+      ' を削除した
+    - when "repository"
+    - when "tag"
+    - else
+      ' CreateEvent
+      = data.dig("ref_type")
+  - when "DeploymentEvent"
+    | DeploymentEvent
+  - when "DeploymentStatusEvent"
+    | DeploymentStatusEvent
+  - when "DownloadEvent"
+    | DownloadEvent
+  - when "FollowEvent"
+    | FollowEvent
+  - when "ForkEvent"
+    | ForkEvent
+  - when "ForkApplyEvent"
+    | ForkApplyEvent
+  - when "GistEvent"
+    | GistEvent
+  - when "GollumEvent"
+    | GollumEvent
+  - when "InstallationEvent"
+    | InstallationEvent
+  - when "InstallationRepositoriesEvent"
+    | InstallationRepositoriesEvent
+  - when "IssueCommentEvent"
+    - issue_title = data.dig("issue", "title")
+    - comment_body = data.dig("comment", "body").to_s.gsub("\r\n", " ").gsub("\n", " ")[0..50]
+    - comment_url = data.dig("comment", "html_url")
+    ' Issue
+    => link_to issue_title, comment_url
+    | にコメントした
+  - when "IssuesEvent"
+    - issue_title = data.dig("issue", "title")
+    - issue_url = data.dig("issue", "html_url")
+    ' Issue
+    => link_to issue_title, issue_url
+    | を立てた
+  - when "LabelEvent"
+    | LabelEvent
+  - when "MarketplacePurchaseEvent"
+    | MarketplacePurchaseEvent
+  - when "MemberEvent"
+    | MemberEvent
+  - when "MembershipEvent"
+    | MembershipEvent
+  - when "MilestoneEvent"
+    | MilestoneEvent
+  - when "OrganizationEvent"
+    | OrganizationEvent
+  - when "OrgBlockEvent"
+    | OrgBlockEvent
+  - when "PageBuildEvent"
+    | PageBuildEvent
+  - when "ProjectCardEvent"
+    | ProjectCardEvent
+  - when "ProjectColumnEvent"
+    | ProjectColumnEvent
+  - when "ProjectEvent"
+    | ProjectEvent
+  - when "PublicEvent"
+    | PublicEvent
+  - when "PullRequestEvent"
+    - pull_request_title = data.dig("pull_request", "title")
+    - pull_request_url = data.dig("pull_request", "html_url")
+    ' Pull Request
+    => link_to pull_request_title, pull_request_url
+    | を立てた
+  - when "PullRequestReviewEvent"
+    | PullRequestReviewEvent
+  - when "PullRequestReviewCommentEvent"
+    - pull_request_title = data.dig("pull_request", "title")
+    - comment_url = data.dig("comment", "html_url")
+    ' Pull Request
+    => link_to pull_request_title, comment_url
+    | にレビューコメントを書いた
+  - when "PushEvent"
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    ' にプッシュした
+    ul
+      - data["commits"].each do |commit|
+        li
+          - sha = commit["sha"]
+          => link_to sha[0..6], "#{repo_url}/commit/#{sha}"
+          => "%s by %s" % [commit["message"], commit.dig("author", "name")]
+  - when "ReleaseEvent"
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    - release_name = data.dig("release", "name")
+    - release_url = data.dig("release", "html_url")
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    ' にリリース
+    => link_to release_name, release_url
+    ' を作成した
+  - when "RepositoryEvent"
+    | RepositoryEvent
+  - when "RepositoryVulnerabilityAlertEvent"
+    | RepositoryVulnerabilityAlertEvent
+  - when "StatusEvent"
+    | StatusEvent
+  - when "TeamEvent"
+    | TeamEvent
+  - when "TeamAddEvent"
+    | TeamAddEvent
+  - when "WatchEvent"
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    | をウォッチした
+  - else
+    = "#{activity.activity_type} : #{activity.activity_id}"

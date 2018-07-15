@@ -7,4 +7,9 @@ html
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    header
+      h1
+        = link_to "Sokuseki", root_path
+    = render "layouts/navigator"
+    #content
+      = yield

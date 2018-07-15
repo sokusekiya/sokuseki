@@ -1,8 +1,16 @@
-- if signed_in?
-  | こんにちは
-  = image_tag current_user.avatar_url, size: '32x32'
-  = current_user.name
-  | さん
-  = link_to 'サインアウト', sessions_path, method: :delete
-- else
-  = link_to 'GitHub Enterprise でサインイン', '/auth/github'
+h2
+  | 全期間のアクティビティ
+p
+  = "全 #{@activities.count} 件"
+h3
+  | 種類ごと
+ul
+  - @activities.group(:activity_type).count.each do |activity_type, count|
+    li
+      = "#{activity_type} : #{count}"
+h2
+  | 月ごとに見る
+ul
+  - @activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.reverse.each do |month_string|
+    li
+      = link_to month_string, activities_on_month_path(month_string)
