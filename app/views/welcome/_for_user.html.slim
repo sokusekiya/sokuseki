@@ -1,18 +1,5 @@
 p
-  | こんにちは
-  = image_tag user.avatar_url, size: "32x32"
-  = user.name
-  | さん
+  ' こんにちは
+  => user.name
+  ' さん
   = link_to "サインアウト", sessions_path, method: :delete
-h2
-  | 全期間のアクティビティ統計
-ul
-  - activities.group(:activity_type).count.each do |activity_type, count|
-    li
-      = "#{activity_type} : #{count}"
-h2
-  | 月ごとに見る
-ul
-  - activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.each do |month_string|
-    li
-      = link_to month_string, activities_on_month_path(month_string)

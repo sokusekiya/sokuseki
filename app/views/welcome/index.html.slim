@@ -1,4 +1,16 @@
-- if signed_in?
-  = render "welcome/for_user", user: current_user, activities: @activities
-- else
-  = render "welcome/for_visitor"
+h2
+  | 全期間のアクティビティ
+p
+  = "全 #{@activities.count} 件"
+h3
+  | 種類ごと
+ul
+  - @activities.group(:activity_type).count.each do |activity_type, count|
+    li
+      = "#{activity_type} : #{count}"
+h2
+  | 月ごとに見る
+ul
+  - @activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.each do |month_string|
+    li
+      = link_to month_string, activities_on_month_path(month_string)
