@@ -1,17 +1,4 @@
 - if signed_in?
-  p
-    | こんにちは
-    = image_tag current_user.avatar_url, size: '32x32'
-    = current_user.name
-    | さん
-    = link_to 'サインアウト', sessions_path, method: :delete
-  p
-    | これまでに
-    = current_user.activities.count
-    | 件のアクティビティがあります
-  ul
-    - @activities.each do |activity|
-      li
-        = "#{activity.activity_type}:#{activity.activity_id}"
+  = render "welcome/for_user", user: current_user, activities: @activities
 - else
-  = link_to 'GitHub Enterprise でサインイン', '/auth/github'
+  = render "welcome/for_visitor"

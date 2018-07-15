@@ -1,0 +1,14 @@
+p
+  | こんにちは
+  = image_tag user.avatar_url, size: "32x32"
+  = user.name
+  | さん
+  = link_to "サインアウト", sessions_path, method: :delete
+p
+  | これまでに
+  = activities.count
+  | 件のアクティビティがあります
+ul
+  - activities.each do |activity|
+    li
+      = "#{activity.activity_type}:#{activity.activity_id}"
