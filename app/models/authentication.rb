@@ -29,7 +29,7 @@ class Authentication < ApplicationRecord
       acted_at = event.created_at
       original_data = event.payload.to_h
 
-      original_data.merge!(repo: event.repo.to_h) if event.repo
+      original_data[:repo] = event.repo.to_h if event.repo
 
       activity.acted_at = acted_at
       activity.original_data = original_data
