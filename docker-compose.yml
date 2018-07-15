@@ -12,6 +12,8 @@ services:
       - .:/myapp
     ports:
       - "3000:3000"
+    environment:
+      TZ: "Asia/Tokyo"
     depends_on:
       - database
     tty: true
