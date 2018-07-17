@@ -3,9 +3,7 @@ class WelcomeController < ApplicationController
     if signed_in?
       @activities = current_user.activities
 
-      if @activities.count.zero?
-        current_user.authentications.each(&:fetch_activities)
-      end
+      current_user.authentications.each(&:fetch_activities) if @activities.count.zero?
     end
   end
 end
