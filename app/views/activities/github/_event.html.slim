@@ -73,9 +73,16 @@ li
   - when "IssuesEvent"
     - issue_title = data.dig("issue", "title")
     - issue_url = data.dig("issue", "html_url")
+    - action = data.dig("action")
     ' Issue
     => link_to issue_title, issue_url
-    | を立てた
+    - case action
+    - when "opened"
+      | を立てた
+    - when "closed"
+      | を閉じた
+    - else
+      = action
   - when "LabelEvent"
     | LabelEvent
   - when "MarketplacePurchaseEvent"
