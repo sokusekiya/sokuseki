@@ -8,12 +8,19 @@ class Authentication < ApplicationRecord
   validates :access_token, presence: true
 
   def fetch_activities
-    return [] unless provider == "github"
+    case provider
+    when "github"
+      fetch_activities_from_github
+    else
+      []
+    end
+  rescue => error
+    Rails.logger.info error
+    []
+  end
 
-    client = Octokit::Client.new(access_token: access_token)
-    client.auto_paginate = true
-
-    events = client.user_events(name)
+  def fetch_activities_from_github
+    events = github_client.user_events(name)
 
     events.each do |event|
       activity_id = event.id.to_s
@@ -36,5 +43,12 @@ class Authentication < ApplicationRecord
 
       activity.save
     end
+  end
+
+  def github_client
+    @github_client ||= Octokit::Client.new(access_token: access_token)
+    @github_client.auto_paginate = true
+
+    @github_client
   end
 end
