@@ -36,5 +36,8 @@ class Authentication < ApplicationRecord
 
       activity.save
     end
+  rescue => error
+    Rails.logger.info error
+    []
   end
 end
