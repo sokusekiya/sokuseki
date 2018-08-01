@@ -23,6 +23,11 @@ li
       => branch_name
       ' を作成した
     - when "repository"
+      - repo_name = data.dig("repo", "name")
+      - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+      ' リポジトリ
+      => link_to repo_name, repo_url
+      ' を作成した
     - when "tag"
     - else
       ' CreateEvent
