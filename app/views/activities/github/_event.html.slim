@@ -93,7 +93,21 @@ li
   - when "MarketplacePurchaseEvent"
     | MarketplacePurchaseEvent
   - when "MemberEvent"
-    | MemberEvent
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    - member_name = data.dig('member', 'login')
+    - member_url = data.dig('member', 'html_url')
+    - action = data.dig("action")
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    - case action
+    - when "added"
+      ' にメンバー
+      => link_to "@#{member_name}", member_url
+      ' を追加した
+    - else
+      => action
+      => link_to "@#{member_name}", member_url
   - when "MembershipEvent"
     | MembershipEvent
   - when "MilestoneEvent"
