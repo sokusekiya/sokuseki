@@ -10,7 +10,15 @@ li
   - when "CheckSuiteEvent"
     | CheckSuiteEvent
   - when "CommitCommentEvent"
-    | CommitCommentEvent
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    - commit_id = data.dig('comment', 'commit_id')
+    - commit_url = "#{repo_url}/commit/#{commit_id}"
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    ' のコミット
+    => link_to commit_id[0..6], commit_url
+    ' にコメントした
   - when "CreateEvent"
     - case data.dig("ref_type")
     - when "branch"
