@@ -79,7 +79,17 @@ li
   - when "GistEvent"
     | GistEvent
   - when "GollumEvent"
-    | GollumEvent
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    ' の Wiki を更新した
+    ul
+      - data["pages"].each do |page|
+        li
+          => { created: '作成', edited: '編集' }[page.dig('action').to_sym]
+          => link_to page.dig('title'), page.dig('html_url')
+          => page.dig('summary')
   - when "InstallationEvent"
     | InstallationEvent
   - when "InstallationRepositoriesEvent"
