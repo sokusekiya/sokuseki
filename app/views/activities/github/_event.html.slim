@@ -65,7 +65,15 @@ li
   - when "FollowEvent"
     | FollowEvent
   - when "ForkEvent"
-    | ForkEvent
+    - repo_name = data.dig("repo", "name")
+    - repo_url = %[https://#{ENV["GHE_HOST"]}/#{repo_name}]
+    - forkee_name = data.dig('forkee', 'full_name')
+    - forkee_url = data.dig('forkee', 'html_url')
+    ' リポジトリ
+    => link_to repo_name, repo_url
+    ' を
+    => link_to forkee_name, forkee_url
+    ' にフォークした
   - when "ForkApplyEvent"
     | ForkApplyEvent
   - when "GistEvent"
