@@ -11,7 +11,8 @@ ul
 h3
   | Issue と Pull Request を Markdown で
 p
-  = text_area_tag(:markdown, @markdown_content, rows: 20, style: 'width: 100%;')
+  - text = markdown_list(@activities.issue_and_pr.order(:acted_at))
+  = text_area_tag(:markdown, text, rows: 20, style: 'width: 100%;')
 h3
   | 一覧
 ul
