@@ -96,7 +96,6 @@ li
     | InstallationRepositoriesEvent
   - when "IssueCommentEvent"
     - issue_title = data.dig("issue", "title")
-    - comment_body = data.dig("comment", "body").to_s.gsub("\r\n", " ").gsub("\n", " ")[0..50]
     - comment_url = data.dig("comment", "html_url")
     => data.dig('issue', 'pull_request') ? 'Pull Request' : 'Issue'
     => link_to issue_title, comment_url
