@@ -9,4 +9,8 @@ class Activity < ApplicationRecord
   scope :on, ->(month_string) {
     where(acted_at: Time.zone.parse("#{month_string}-01").all_month)
   }
+
+  scope :issue_and_pr, -> {
+    where(activity_type: %w[IssuesEvent PullRequestEvent])
+  }
 end

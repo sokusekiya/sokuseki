@@ -199,13 +199,9 @@ Style/AndOr:
 Style/AsciiComments:
   Enabled: false
 
-# do .. end から更にメソッドチェーンすると見づらいので
-# auto-correct せず、自分で修正する
-# spec 内は見た目が綺麗になるので許可
+# ブロックの { .. } / do .. end は好きなように
 Style/BlockDelimiters:
-  AutoCorrect: false
-  Exclude:
-    - "spec/**/*_spec.rb"
+  Enabled: false
 
 # option 等、明示的にハッシュにした方が分かりやすい場合もある
 Style/BracesAroundHashParameters:
@@ -305,6 +301,10 @@ Style/MixinUsage:
     - "bin/update"
     - "spec/dummy/bin/setup"
     - "spec/dummy/bin/update"
+
+# 複数行ブロックはお好きなように
+Style/MultilineBlockChain:
+  Enabled: false
 
 # 1_000_000 と区切り文字が 2 個以上必要になる場合のみ _ 区切りを必須にする
 # 10_000_00 は許可しない。(これは例えば 10000 ドルをセント単位にする時に便利だが
