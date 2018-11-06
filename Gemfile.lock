@@ -52,7 +52,7 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     coderay (1.1.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.1)
     crass (1.0.4)
     dotenv (2.5.0)
     dotenv-rails (2.5.0)
@@ -66,10 +66,10 @@ GEM
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jwt (1.5.6)
@@ -228,7 +228,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   dotenv-rails
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.8)
   listen (>= 3.0.5, < 3.2)
   octokit
   omniauth-github
