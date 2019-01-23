@@ -413,9 +413,9 @@ Style/WordArray:
   Enabled: false
 
 # 0 <= foo && foo < 5 のように数直線上に並べるのは
-# コードを読みやすくするテクニックなので equality_operators_only に。
+# コードを読みやすくするテクニックなので forbid_for_equality_operators_only に。
 Style/YodaCondition:
-  EnforcedStyle: equality_operators_only
+  EnforcedStyle: forbid_for_equality_operators_only
 
 # 条件式で arr.size > 0 が使われた時に
 #   if !arr.empty?
