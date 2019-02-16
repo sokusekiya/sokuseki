@@ -8,7 +8,6 @@
 
 ```bash
 $ docker-compose up -d
-$ docker container exec sokuseki_web_1 bundle exec rails db:create
-$ docker container exec sokuseki_web_1 bundle exec rails db:migrate
+$ docker-compose run --rm web bin/rails db:create db:migrate
 ```
 
