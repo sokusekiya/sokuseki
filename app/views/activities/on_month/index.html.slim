@@ -4,6 +4,7 @@ p
   = "全 #{@activities.count} 件"
 h3
   | 種類ごと
+canvas#activityChart
 ul
   - @activities.group(:activity_type).count.each do |activity_type, count|
     li
@@ -17,3 +18,71 @@ h3
   | 一覧
 ul
   = render partial: "activities/github/event", collection: @activities.order(:acted_at), as: :activity
+script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
+javascript:
+  window.addEventListener('load', () => {
+    const ctx = document.getElementById('activityChart').getContext('2d')
+    const chart = new Chart(ctx, {
+      type: 'bar',
+
+      data: {
+        labels: ['Your Activities'],
+        datasets: [
+          {
+            label: 'CreateEvent',
+            data: [80],
+            backgroundColor: 'red'
+          },
+          {
+            label: 'ReleaseEvent',
+            data: [20],
+            backgroundColor: 'orange'
+          },
+          {
+            label: 'IssuesEvent',
+            data: [50],
+            backgroundColor: 'blue'
+          },
+          {
+            label: 'DeleteEvent',
+            data: [40],
+            backgroundColor: 'aqua'
+          },
+          {
+            label: 'IssueCommentEvent',
+            data: [70],
+            backgroundColor: 'purple'
+          },
+          {
+            label: 'PushEvent',
+            data: [10],
+            backgroundColor: 'black'
+          },
+          {
+            label: 'PullRequestReviewCommentEvent',
+            data: [30],
+            backgroundColor: 'green'
+          },
+          {
+            label: 'PullRequestEvent',
+            data: [60],
+            backgroundColor: 'yellow'
+          },
+        ]
+      },
+
+      options: {
+        scales: {
+          xAxes: [{
+            stacked: true
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    })
+  }, false)
