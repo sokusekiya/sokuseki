@@ -14,7 +14,7 @@ $ docker-compose run --rm web bin/rails db:create db:migrate
 ```
 
 ### GitHub Enterpriseの情報を取得して、個人ページを表示する
-https://github.example.com/settings/applications/new で、Oauth Appを作成して、`Client ID`, `Client Secret`を取得する
+https://github.example.com/settings/applications/new で、OAuth Appを作成して、`Client ID`, `Client Secret`を取得する
 
 `.env` ファイルを作成する
 
