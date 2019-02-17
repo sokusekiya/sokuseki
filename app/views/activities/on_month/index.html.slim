@@ -2,7 +2,7 @@ h2
   = "#{@month_string} のアクティビティ"
 p
   = "全 #{@activities.count} 件"
-canvas#activityChart
+canvas#js-activities-chart
 input.js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
   | Issue と Pull Request を Markdown で
@@ -41,7 +41,7 @@ javascript:
       i++
     }
 
-    const ctx = document.getElementById('activityChart').getContext('2d')
+    const ctx = document.getElementById('js-activities-chart').getContext('2d')
     const chart = new Chart(ctx, {
       type: 'bar',
 
