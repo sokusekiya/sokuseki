@@ -5,10 +5,7 @@ p
 h3
   | 種類ごと
 canvas#activityChart
-ul
-  - @activities.group(:activity_type).count.each do |activity_type, count|
-    li
-      = "#{activity_type} : #{count}"
+input.js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
   | Issue と Pull Request を Markdown で
 p
@@ -21,54 +18,38 @@ ul
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
 javascript:
   window.addEventListener('load', () => {
+    const colorPalettes = [
+      '#1abc9c',
+      '#2ecc71',
+      '#3498db',
+      '#9b59b6',
+      '#34495e',
+      '#f1c40f',
+      '#e67e22',
+      '#e74c3c',
+      '#ecf0f1',
+      '#95a5a6'
+    ]
+
+    const activities = JSON.parse(document.querySelector('.js-activities').value)
+    let datasets = []
+    let i = 0
+    for (let key in activities) {
+      datasets.push({
+        label: key,
+        data: [activities[key]],
+        backgroundColor: colorPalettes[i % colorPalettes.length]
+      })
+      i++
+    }
+
     const ctx = document.getElementById('activityChart').getContext('2d')
     const chart = new Chart(ctx, {
       type: 'bar',
 
       data: {
         labels: ['Your Activities'],
-        datasets: [
-          {
-            label: 'CreateEvent',
-            data: [80],
-            backgroundColor: 'red'
-          },
-          {
-            label: 'ReleaseEvent',
-            data: [20],
-            backgroundColor: 'orange'
-          },
-          {
-            label: 'IssuesEvent',
-            data: [50],
-            backgroundColor: 'blue'
-          },
-          {
-            label: 'DeleteEvent',
-            data: [40],
-            backgroundColor: 'aqua'
-          },
-          {
-            label: 'IssueCommentEvent',
-            data: [70],
-            backgroundColor: 'purple'
-          },
-          {
-            label: 'PushEvent',
-            data: [10],
-            backgroundColor: 'black'
-          },
-          {
-            label: 'PullRequestReviewCommentEvent',
-            data: [30],
-            backgroundColor: 'green'
-          },
-          {
-            label: 'PullRequestEvent',
-            data: [60],
-            backgroundColor: 'yellow'
-          },
-        ]
+        datasets: datasets
       },
 
       options: {
