@@ -2,8 +2,6 @@ h2
   = "#{@month_string} のアクティビティ"
 p
   = "全 #{@activities.count} 件"
-h3
-  | 種類ごと
 canvas#activityChart
 input.js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
@@ -48,11 +46,16 @@ javascript:
       type: 'bar',
 
       data: {
-        labels: ['Your Activities'],
+        labels: ['今月のアクティビティ'],
         datasets: datasets
       },
 
       options: {
+        title: {
+          display: true,
+          text: '種類ごと',
+          fontSize: 20
+        },
         scales: {
           xAxes: [{
             stacked: true,
