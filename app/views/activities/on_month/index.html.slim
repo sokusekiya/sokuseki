@@ -3,7 +3,7 @@ h2
 p
   = "全 #{@activities.count} 件"
 canvas#js-activities-chart
-input.js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
+input#js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
   | Issue と Pull Request を Markdown で
 p
@@ -29,7 +29,7 @@ javascript:
       '#95a5a6'
     ]
 
-    const activities = JSON.parse(document.querySelector('.js-activities').value)
+    const activities = JSON.parse(document.getElementById('js-activities').value)
     let datasets = []
     let i = 0
     for (let key in activities) {
