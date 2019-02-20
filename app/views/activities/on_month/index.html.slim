@@ -2,12 +2,8 @@ h2
   = "#{@month_string} のアクティビティ"
 p
   = "全 #{@activities.count} 件"
-h3
-  | 種類ごと
-ul
-  - @activities.group(:activity_type).count.each do |activity_type, count|
-    li
-      = "#{activity_type} : #{count}"
+canvas#js-activities-chart
+input#js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
   | Issue と Pull Request を Markdown で
 p
@@ -17,3 +13,61 @@ h3
   | 一覧
 ul
   = render partial: "activities/github/event", collection: @activities.order(:acted_at), as: :activity
+script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
+javascript:
+  window.addEventListener('load', () => {
+    const colorPalettes = [
+      '#1abc9c',
+      '#2ecc71',
+      '#3498db',
+      '#9b59b6',
+      '#34495e',
+      '#f1c40f',
+      '#e67e22',
+      '#e74c3c',
+      '#ecf0f1',
+      '#95a5a6'
+    ]
+
+    const activities = JSON.parse(document.getElementById('js-activities').value)
+    let datasets = []
+    let i = 0
+    for (let key in activities) {
+      datasets.push({
+        label: key,
+        data: [activities[key]],
+        backgroundColor: colorPalettes[i % colorPalettes.length]
+      })
+      i++
+    }
+
+    const ctx = document.getElementById('js-activities-chart').getContext('2d')
+    new Chart(ctx, {
+      type: 'bar',
+
+      data: {
+        labels: ['今月のアクティビティ'],
+        datasets: datasets
+      },
+
+      options: {
+        title: {
+          display: true,
+          text: '種類ごと',
+          fontSize: 20
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+            categoryPercentage: 0.4
+          }],
+          yAxes: [{
+            stacked: true,
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+    })
+  }, false)
