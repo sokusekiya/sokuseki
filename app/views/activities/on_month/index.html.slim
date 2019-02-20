@@ -34,7 +34,7 @@ javascript:
     let i = 0
     for (let key in activities) {
       datasets.push({
-        label: key,
+        label: key.replace('Event', ''),
         data: [activities[key]],
         backgroundColor: colorPalettes[i % colorPalettes.length]
       })
