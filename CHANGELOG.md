@@ -16,9 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Docker起動時に、tmp/pids/server.pid を削除する #77
 
-## [1.0.0] - 2019-02-16
+## 1.0.0 - 2019-02-16
 ### Added
 - initial release!
 
 [Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.1.0...HEAD
-[1.0.0]: https://github.com/june29/sokuseki/compare/v1.0.0...v1.1.0
+[1.1.0]: https://github.com/june29/sokuseki/compare/v1.0.0...v1.1.0
