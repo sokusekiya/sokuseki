@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 月別アクティビティのチャート表示 [#75](https://github.com/june29/sokuseki/pull/75) [#78](https://github.com/june29/sokuseki/pull/78)
 
 ### Changed
-- Docker起動時に、tmp/pids/server.pid を削除する [#77](https://github.com/june29/sokuseki/pull/77)
+- Docker起動時に、tmp/pids/server.pid を削除 [#77](https://github.com/june29/sokuseki/pull/77)
 
 ## 1.0.0 - 2019-02-16
 ### Added
