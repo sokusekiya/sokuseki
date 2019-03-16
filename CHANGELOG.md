@@ -5,9 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Removed
+- 使用していないomniauthのstrategy (developer) を削除 [👋 使っていないstrategyにお別れする by yinm · Pull Request #88 · june29/sokuseki](https://github.com/june29/sokuseki/pull/88)
 
 ## [1.1.0] - 2019-02-23
-- 使用していないomniauthのstrategy (developer) を削除 [👋 使っていないstrategyにお別れする by yinm · Pull Request #88 · june29/sokuseki](https://github.com/june29/sokuseki/pull/88)
 
 ### Added
 - 月別アクティビティのチャート表示 [#75](https://github.com/june29/sokuseki/pull/75) [#78](https://github.com/june29/sokuseki/pull/78)
