@@ -1,21 +1,15 @@
 module SessionsHelper
-  def sign_in(user)
-    session[:user_id] = user.id
-    @current_user = user
-  end
-
-  def sign_out
-    @current_user = nil
-    session.delete(:user_id)
-  end
-
   def signed_in?
     !!self.current_user
   end
 
   def current_user
-    return if session[:user_id].nil?
+    # FIXME: JWTを受け取り方
+    # Bearer tokenにしたいけど、フロント側をまだ作ってないのでQuery String経由にして試す
+    token = params[:token]
+    return if token.nil?
 
-    @current_user ||= User.find_by(id: session[:user_id])
+    payload = JsonWebToken.decode(token)
+    User.find_by(id: payload[:user_id])
   end
 end

@@ -7,13 +7,13 @@ class SessionsController < ApplicationController
     authentication = Authentication.find_by(provider: provider, uid: uid)
 
     if authentication
-      sign_in authentication.user
+      user = authentication.user
     else
-      sign_in User.create_with(omniauth)
+      user = User.create_with(omniauth)
     end
 
     token = JsonWebToken.encode({
-      user_id: current_user.id,
+      user_id: user.id,
     })
     redirect_to root_path(token: token)
   end
