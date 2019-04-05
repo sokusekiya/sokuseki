@@ -12,7 +12,10 @@ class SessionsController < ApplicationController
       sign_in User.create_with(omniauth)
     end
 
-    redirect_to root_path
+    token = JsonWebToken.encode({
+      user_id: current_user.id,
+    })
+    redirect_to root_path(token: token)
   end
 
   def destroy
