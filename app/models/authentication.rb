@@ -14,8 +14,8 @@ class Authentication < ApplicationRecord
     else
       []
     end
-  rescue => error
-    Rails.logger.info error
+  rescue => e
+    Rails.logger.info e
     []
   end
 
