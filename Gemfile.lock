@@ -226,6 +226,7 @@ DEPENDENCIES
   byebug
   dotenv-rails
   jbuilder (~> 2.8)
+  jwt
   listen (>= 3.0.5, < 3.2)
   octokit
   omniauth-github
