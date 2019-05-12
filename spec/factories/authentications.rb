@@ -5,6 +5,6 @@ FactoryBot.define do
     name { "yinm" }
     access_token { "abcde12345" }
 
-    user
+    user { nil }
   end
 end

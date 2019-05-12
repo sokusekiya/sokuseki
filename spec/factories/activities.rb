@@ -4,8 +4,8 @@ FactoryBot.define do
     activity_type { "IssuesEvent" }
     acted_at { Time.current }
 
-    authentication
-    user { authentication.user }
+    user { nil }
+    authentication { nil }
 
     trait :commit_comment_event do
       activity_type { "CommitCommentEvent" }
