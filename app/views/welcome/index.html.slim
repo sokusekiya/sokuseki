@@ -10,6 +10,9 @@
       li
         = "#{activity_type} : #{count}"
   h2
+    | 直近1年間のアクティビティ推移
+    = render 'yearly_report'
+  h2
     | 月ごとに見る
   ul
     - @activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.reverse.each do |month_string|
