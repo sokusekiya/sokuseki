@@ -1,0 +1,3 @@
+canvas#js-yearly-activities-chart
+- @yearly_activities.each do |monthly_activity|
+  input.js-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].group(:activity_type).count.to_json}"
