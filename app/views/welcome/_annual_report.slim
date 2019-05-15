@@ -1,6 +1,6 @@
 canvas#js-annual-activities-chart
-- @annual_activities.each do |monthly_activity|
-  input.js-annual-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].count.to_json}"
+- @annual_activities.each do |month, activities|
+  input.js-annual-activities type="hidden" month="#{month}" value="#{activities.size}"
 
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
 javascript:
