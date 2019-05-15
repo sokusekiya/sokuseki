@@ -10,8 +10,8 @@ class Activity < ApplicationRecord
     where(acted_at: Time.zone.parse("#{month_string}-01").all_month)
   }
 
-  scope :on_month_ago, ->(month_ago) {
-    where(acted_at: month_ago.month.ago.all_month)
+  scope :month_ago, ->(month_amounth) {
+    where(acted_at: month_amounth.month.ago.all_month)
   }
 
   scope :issue_and_pr, -> {
