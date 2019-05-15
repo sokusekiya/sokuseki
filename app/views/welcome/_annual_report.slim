@@ -1,6 +1,6 @@
-canvas#js-yearly-activities-chart
-- @yearly_activities.each do |monthly_activity|
-  input.js-yearly-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].count.to_json}"
+canvas#js-annual-activities-chart
+- @annual_activities.each do |monthly_activity|
+  input.js-annual-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].count.to_json}"
 
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
 javascript:
@@ -18,7 +18,7 @@ javascript:
       '#95a5a6'
     ]
 
-      const activities = document.getElementsByClassName('js-yearly-activities')
+      const activities = document.getElementsByClassName('js-annual-activities')
       const color = colorPalettes[Math.floor(Math.random() * Math.floor(colorPalettes.length))]
       let data = []
       let labels = []
@@ -27,7 +27,7 @@ javascript:
           data.push(activity.value)
       }
 
-      const ctx = document.getElementById('js-yearly-activities-chart').getContext('2d')
+      const ctx = document.getElementById('js-annual-activities-chart').getContext('2d')
       new Chart(ctx, {
           type: 'line',
 
