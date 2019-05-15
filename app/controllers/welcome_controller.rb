@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
         activity = { on: on, activity: @activities.on_month_ago(month) }
         activities.push(activity)
       end
+      @yearly_activities.reverse!
 
       current_user.authentications.each(&:fetch_activities) if @activities.count.zero?
     end

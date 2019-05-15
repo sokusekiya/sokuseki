@@ -1,3 +1,63 @@
 canvas#js-yearly-activities-chart
 - @yearly_activities.each do |monthly_activity|
-  input.js-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].group(:activity_type).count.to_json}"
+  input.js-yearly-activities type="hidden" month="#{monthly_activity[:on]}" value="#{monthly_activity[:activity].count.to_json}"
+
+script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
+javascript:
+  window.addEventListener('load', () => {
+    const colorPalettes = [
+      '#1abc9c',
+      '#2ecc71',
+      '#3498db',
+      '#9b59b6',
+      '#34495e',
+      '#f1c40f',
+      '#e67e22',
+      '#e74c3c',
+      '#ecf0f1',
+      '#95a5a6'
+    ]
+
+      const activities = document.getElementsByClassName('js-yearly-activities')
+      color = colorPalettes[Math.floor(Math.random() * Math.floor(colorPalettes.length))]
+      let data = []
+      let labels = []
+      for (let activity of activities) {
+          labels.push(activity.getAttribute("month"))
+          data.push(activity.value)
+      }
+
+      const ctx = document.getElementById('js-yearly-activities-chart').getContext('2d')
+      new Chart(ctx, {
+          type: 'line',
+
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'yearly-report',
+                  data: data,
+                  borderColor: color
+              }]
+          },
+
+          options: {
+              title: {
+                  display: true,
+                  text: 'アクティビティの推移',
+                  fontSize: 20
+              },
+              scales: {
+                  xAxes: [{
+                      stacked: true,
+                      categoryPercentage: 0.4
+                  }],
+                  yAxes: [{
+                      stacked: true,
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      })
+  }, false)
