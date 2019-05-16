@@ -21,6 +21,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "pry"
   gem "rubocop", require: false
+  gem "rubocop-performance"
 end
 
 group :development do
