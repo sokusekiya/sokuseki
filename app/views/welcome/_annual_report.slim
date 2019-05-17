@@ -1,0 +1,63 @@
+canvas#js-annual-activities-chart
+- @annual_activities.each do |month, count|
+  input.js-annual-activities type="hidden" month=month value=count
+
+script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
+javascript:
+  window.addEventListener('load', () => {
+    const colorPalettes = [
+      '#1abc9c',
+      '#2ecc71',
+      '#3498db',
+      '#9b59b6',
+      '#34495e',
+      '#f1c40f',
+      '#e67e22',
+      '#e74c3c',
+      '#ecf0f1',
+      '#95a5a6'
+    ]
+
+      const activities = document.getElementsByClassName('js-annual-activities')
+      const color = colorPalettes[Math.floor(Math.random() * Math.floor(colorPalettes.length))]
+      let data = []
+      let labels = []
+      for (let activity of activities) {
+          labels.push(activity.getAttribute("month"))
+          data.push(activity.value)
+      }
+
+      const ctx = document.getElementById('js-annual-activities-chart').getContext('2d')
+      new Chart(ctx, {
+          type: 'line',
+
+          data: {
+              labels: labels,
+              datasets: [{
+                  label: 'all activities',
+                  data: data,
+                  borderColor: color
+              }]
+          },
+
+          options: {
+              title: {
+                  display: true,
+                  text: '1年間のアクティビティ推移',
+                  fontSize: 20
+              },
+              scales: {
+                  xAxes: [{
+                      stacked: true,
+                      categoryPercentage: 0.4
+                  }],
+                  yAxes: [{
+                      stacked: true,
+                      ticks: {
+                          beginAtZero:true
+                      }
+                  }]
+              }
+          }
+      })
+  }, false)

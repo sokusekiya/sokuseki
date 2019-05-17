@@ -6,7 +6,7 @@ ruby "2.6.3"
 gem "rails", "~> 5.2.3"
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "jbuilder", "~> 2.8"
+gem "jbuilder", "~> 2.9"
 gem "mini_racer"
 gem "octokit"
 gem "omniauth-github"
@@ -24,6 +24,7 @@ group :development, :test do
   gem "pry"
   gem "rspec-rails", "~> 3.8"
   gem "rubocop", require: false
+  gem "rubocop-performance"
 end
 
 group :development do
