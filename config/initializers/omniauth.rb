@@ -1,6 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :developer unless Rails.env.production?
-
   ghe_host = ENV["GHE_HOST"]
 
   provider :github, ENV["GHE_APP_KEY"], ENV["GHE_APP_SECRET"], {

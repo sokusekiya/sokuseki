@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.1"
+ruby "2.6.3"
 
-gem "rails", "~> 5.2.2"
+gem "rails", "~> 5.2.3"
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "jbuilder", "~> 2.8"
+gem "jbuilder", "~> 2.9"
 gem "octokit"
 gem "omniauth-github"
 gem "pg", ">= 0.18", "< 2.0"
@@ -19,8 +19,12 @@ gem "uglifier", ">= 1.3.0"
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "dotenv-rails"
+  gem "factory_bot_rails"
+  gem "mini_racer"
   gem "pry"
+  gem "rspec-rails", "~> 3.8"
   gem "rubocop", require: false
+  gem "rubocop-performance"
 end
 
 group :development do
