@@ -5,9 +5,12 @@ jobs:
        - image: circleci/ruby:2.6.3
          environment:
            RAILS_ENV: test
+           PGHOST: 127.0.0.1
+           PGUSER: circleci
        - image: circleci/postgres:10.4-alpine
          environment:
            POSTGRES_USER: circleci
+           POSTGRES_DB: sokuseki_test
 
     working_directory: ~/myapp
     steps:
@@ -15,8 +18,8 @@ jobs:
 
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          - v1-dependencies-
+          - v2-dependencies-{{ checksum "Gemfile.lock" }}
+          - v2-dependencies-
 
       - run:
           name: install dependencies
@@ -26,8 +29,16 @@ jobs:
       - save_cache:
           paths:
             - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run:
           name: rubocop
           command: bundle exec rubocop
+
+      - run:
+          name: Database Setup
+          command: bundle exec rake db:setup
+
+      - run:
+          name: rspec
+          command: bundle exec rspec
