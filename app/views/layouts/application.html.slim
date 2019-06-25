@@ -13,4 +13,10 @@ html
         = link_to "Sokuseki", root_path, class:'header-logo' 
       = render "layouts/navigator"
     #content.content
-      = yield
+      - if signed_in?
+        = yield
+      - else
+        p.before-signed-in
+          = link_to "GitHub Enterprise でサインイン", "/auth/github", class:'button is-link is-medium' 
+      
+
