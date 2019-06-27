@@ -5,11 +5,12 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css', media: 'all'
     = javascript_include_tag 'application'
   body
-    header
+    header.header
       h1
-        = link_to "Sokuseki", root_path
-    = render "layouts/navigator"
-    #content
+        = link_to "Sokuseki", root_path, class:'header-logo' 
+      = render "layouts/navigator"
+    #content.content
       = yield
