@@ -29,8 +29,6 @@ body {
   width: 130px;
   display: block;
 }
-.header-logo__image {
-}
 .content {
   padding: 0 2em;
   height: 90vh;
@@ -76,6 +74,4 @@ body {
   left: 50%;
   margin-left: -30px;
 
-}
-.before-signed-in__button {
 }
