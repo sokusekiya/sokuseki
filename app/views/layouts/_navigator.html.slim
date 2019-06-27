@@ -1,5 +1,3 @@
 nav
   - if signed_in?
     = render "welcome/for_user", user: current_user, activities: @activities
-  - else
-    = render "welcome/for_visitor"
