@@ -44,7 +44,7 @@ Layout/IndentFirstHashElement:
 
 # private/protected は一段深くインデントする
 Layout/IndentationConsistency:
-  EnforcedStyle: rails
+  EnforcedStyle: indented_internal_methods
 
 # メソッドチェーン感がより感じられるインデントにする
 Layout/MultilineMethodCallIndentation:
