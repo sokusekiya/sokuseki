@@ -16,5 +16,8 @@ html
       - if signed_in?
         = yield
       - else
-        p.before-signed-in
-          = link_to "GitHub Enterprise でサインイン", "/auth/github", class:'button is-link is-medium' 
+        .before-signed-in
+          .before-signed-in__content
+            h1.before-signed-in__title
+              img alt="moge" src="/assets/logo-vertical.svg" class="before-signed-in__logo" /
+            = link_to "GitHub Enterprise でサインイン", "/auth/github", class:'before-signed-in__button button is-link is-medium'
