@@ -26,6 +26,10 @@ body {
 .header-logo {
   color: #ffffff;
   font-weight: bold;
+  width: 130px;
+  display: block;
+}
+.header-logo__image {
 }
 .content {
   padding: 0 2em;
@@ -43,14 +47,35 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid #eee;
-  padding: 5em 3em;
+  border: 2px solid #eeeeee;
+  border-bottom-width: 3px;
+  padding: 3em 0 0;
   border-radius: 10px;
   background: #ffffff;
 }
 .before-signed-in__title {
   width: 150px;
+  margin-bottom: .2em !important;
+}
+.before-signed-in__text {
+  margin-bottom: 3.5em !important;
+}
+.before-signed-in__button-area {
+  padding: 3.5em 5em;
+  border-top: 2px solid #eeeeee;
+  background: #f5f5f5;
+  position: relative;
+}
+.before-signed-in__button-area::before {
+  content: url(/assets/sign-in-user-icon.svg);
+  width: 60px;
+  height: 60px;
+  display: block;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  margin-left: -30px;
+
 }
 .before-signed-in__button {
-  margin-top: 1em;
 }
