@@ -65,7 +65,7 @@ body {
   position: relative;
 }
 .before-signed-in__button-area::before {
-  content: url(/assets/sign-in-user-icon.svg);
+  content: url(<%= asset_path "sign-in-user-icon.svg" %>);
   width: 60px;
   height: 60px;
   display: block;
@@ -73,5 +73,4 @@ body {
   top: -30px;
   left: 50%;
   margin-left: -30px;
-
 }
