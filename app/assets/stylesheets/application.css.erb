@@ -45,7 +45,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid #eeeeee;
+  border: 2px solid #e5e5e5;
   border-bottom-width: 3px;
   padding: 3em 0 0;
   border-radius: 10px;
@@ -60,12 +60,13 @@ body {
 }
 .before-signed-in__button-area {
   padding: 3.5em 5em;
-  border-top: 2px solid #eeeeee;
+  border-top: 2px solid #e5e5e5;
   background: #f5f5f5;
   position: relative;
+  border-radius: 0 0 8px 8px;
 }
 .before-signed-in__button-area::before {
-  content: url(/assets/sign-in-user-icon.svg);
+  content: url(<%= asset_path "sign-in-user-icon.svg" %>);
   width: 60px;
   height: 60px;
   display: block;
@@ -73,5 +74,4 @@ body {
   top: -30px;
   left: 50%;
   margin-left: -30px;
-
 }
