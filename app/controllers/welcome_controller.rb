@@ -4,12 +4,14 @@ class WelcomeController < ApplicationController
 
     @activities = current_user.activities
 
+    @target_months = (0..12).each_with_object([]) { |var, obj| obj.push var.month.ago.strftime("%Y-%m") }.reverse!
+
     @annual_activities =
       @activities.where("acted_at >= ?", 1.year.ago.beginning_of_month).
         group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.inject({}) do |result, (key, value)|
           acted_at, activity_type = key
-        result[acted_at] ||= {}
-        result[acted_at][activity_type] = value
+        result[activity_type] ||= {}
+        result[activity_type][acted_at] = value
         result
       end
 
