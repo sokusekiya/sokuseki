@@ -8,8 +8,8 @@ class WelcomeController < ApplicationController
       @activities.where("acted_at >= ?", 1.year.ago.beginning_of_month).
         group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.inject({}) do |result, (key, value)|
           acted_at, activity_type = key
-        result[activity_type] ||= {}
-        result[activity_type][acted_at] = value
+        result[acted_at] ||= {}
+        result[acted_at][activity_type] = value
         result
       end
 
