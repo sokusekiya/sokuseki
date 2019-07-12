@@ -1,6 +1,6 @@
 canvas#js-annual-activities-chart
-- @annual_activities.each do |activity_type, value|
-  input.js-annual-activities type="hidden" activityType=activity_type value="#{value.to_json}"
+- @annual_activities.each do |type, value|
+  input.js-annual-activities type="hidden" activityType=type value="#{value.to_json}"
 
 input#js-target-months type="hidden" value="#{@target_months}"
 
