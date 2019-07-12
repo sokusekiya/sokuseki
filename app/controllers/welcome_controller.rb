@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
     @activities = current_user.activities
 
-    @target_months = (0..12).each_with_object([]) { |var, obj| obj.push var.month.ago.strftime("%Y-%m") }.reverse
+    @target_months = (0..12).map { |var| var.month.ago.strftime("%Y-%m") }.reverse
 
     @annual_activities =
       @activities.where("acted_at >= ?", 1.year.ago.beginning_of_month).
