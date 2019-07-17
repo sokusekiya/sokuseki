@@ -30,7 +30,7 @@ javascript:
           let data = []
           const parsedValue = JSON.parse(activity.value)
           for(let month of monthLabels) {
-              if (parsedValue[month] == undefined) {
+              if (parsedValue[month] === undefined) {
                   data.push(0)
               } else {
                   data.push(parsedValue[month])
