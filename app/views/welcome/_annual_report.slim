@@ -26,7 +26,7 @@ javascript:
 
       let i = 0
       for (let activity of activities) {
-          activityType = activity.getAttribute("activityType")
+          const activityType = activity.getAttribute("activityType").replace('Event', '')
           let data = []
           const parsedValue = JSON.parse(activity.value)
           for(let month of monthLabels) {
