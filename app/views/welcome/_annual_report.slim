@@ -1,6 +1,8 @@
 canvas#js-annual-activities-chart
-- @annual_activities.each do |month, count|
-  input.js-annual-activities type="hidden" month=month value=count
+- @annual_activities.each do |type, value|
+  input.js-annual-activities type="hidden" activityType=type value="#{value.to_json}"
+
+input#js-target-months type="hidden" value="#{@target_duration}"
 
 script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"
 javascript:
@@ -19,25 +21,36 @@ javascript:
     ]
 
       const activities = document.getElementsByClassName('js-annual-activities')
-      const color = colorPalettes[Math.floor(Math.random() * Math.floor(colorPalettes.length))]
-      let data = []
-      let labels = []
+      const monthLabels = JSON.parse(document.getElementById("js-target-months").value)
+      let datasets = []
+
+      let i = 0
       for (let activity of activities) {
-          labels.push(activity.getAttribute("month"))
-          data.push(activity.value)
+          const activityType = activity.getAttribute("activityType").replace('Event', '')
+          let data = []
+          const parsedValue = JSON.parse(activity.value)
+          for(let month of monthLabels) {
+              if (parsedValue[month] === undefined) {
+                  data.push(0)
+              } else {
+                  data.push(parsedValue[month])
+              }
+          }
+          datasets.push({
+              label: activityType,
+              data: data,
+              backgroundColor: colorPalettes[i % colorPalettes.length]
+          })
+          i++
       }
 
       const ctx = document.getElementById('js-annual-activities-chart').getContext('2d')
       new Chart(ctx, {
-          type: 'line',
+          type: 'bar',
 
           data: {
-              labels: labels,
-              datasets: [{
-                  label: 'all activities',
-                  data: data,
-                  borderColor: color
-              }]
+              labels: monthLabels,
+              datasets
           },
 
           options: {
