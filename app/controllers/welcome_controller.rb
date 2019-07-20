@@ -8,8 +8,8 @@ class WelcomeController < ApplicationController
 
     @annual_activities =
       @activities.where("acted_at >= ?", 1.year.ago.beginning_of_month).
-          group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count
-          .each_with_object(Hash.new { |h, k| h[k] = {} }) do |(key, value), result|
+        group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.
+        each_with_object(Hash.new { |h, k| h[k] = {} }) do |(key, value), result|
         acted_month, activity_type = key
         result[activity_type][acted_month] = value
       end
