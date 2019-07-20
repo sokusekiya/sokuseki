@@ -4,10 +4,10 @@ class WelcomeController < ApplicationController
 
     @activities = current_user.activities
 
-    @target_duration = (0..12).map { |var| var.month.ago.strftime("%Y-%m") }.reverse
+    @target_duration = (0..12).map { |n| n.month.ago.strftime("%Y-%m") }.reverse
 
     @annual_activities =
-      @activities.where("acted_at >= ?", 1.year.ago.beginning_of_month).
+      @activities.in_the_last_year.
         group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.
         each_with_object(Hash.new { |h, k| h[k] = {} }) do |(key, value), result|
         acted_month, activity_type = key

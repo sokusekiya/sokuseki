@@ -10,6 +10,10 @@ class Activity < ApplicationRecord
     where(acted_at: Time.zone.parse("#{month_string}-01").all_month)
   }
 
+  scope :in_the_last_year, -> {
+    where("acted_at >= ?", 1.year.ago.beginning_of_month)
+  }
+
   scope :issue_and_pr, -> {
     where(activity_type: %w[IssuesEvent PullRequestEvent])
   }
