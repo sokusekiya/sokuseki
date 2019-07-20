@@ -2,7 +2,7 @@
 
 足跡
 
-[![CircleCI](https://circleci.com/gh/june29/sokuseki/tree/master.svg?style=svg)](https://circleci.com/gh/june29/sokuseki/tree/master)
+[![CircleCI](https://circleci.com/gh/sokusekiya/sokuseki/tree/master.svg?style=svg)](https://circleci.com/gh/sokusekiya/sokuseki/tree/master)
 
 ## 開発のはじめかた
 
@@ -25,4 +25,3 @@ $ echo GHE_HOST="github.example.com" >> .env
 ```
 
 Dockerを起動し直してからサインインすると、個人ページが表示できる
-
