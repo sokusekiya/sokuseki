@@ -26,7 +26,7 @@ javascript:
 
       let i = 0
       for (let activity of activities) {
-          const label = activity.getAttribute("activityType").replace('Event', '')
+          const activityType = activity.getAttribute("activityType").replace('Event', '')
           let data = []
           const parsedValue = JSON.parse(activity.value)
           for(let month of monthLabels) {
@@ -37,7 +37,7 @@ javascript:
               }
           }
           datasets.push({
-              label,
+              label: activityType,
               data,
               backgroundColor: colorPalettes[i % colorPalettes.length]
           })
