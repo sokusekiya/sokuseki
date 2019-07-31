@@ -205,7 +205,7 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    sentry-raven (2.9.0)
+    sentry-raven (2.11.0)
       faraday (>= 0.7.6, < 1.0)
     slim (4.0.1)
       temple (>= 0.7.6, < 0.9)
