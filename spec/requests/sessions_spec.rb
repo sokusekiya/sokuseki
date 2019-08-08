@@ -10,6 +10,18 @@ RSpec.describe 'Sessions', type: :request do
         expect{get '/auth/github/callback'}.not_to change(User, :count)
       end
 
+      it 'GitHubのusernameに変更がある場合は、変更に追従する' do
+        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+          provider: 'github',
+          uid: '12345',
+          info: {
+            nickname: 'yinm_updated'
+          }
+        })
+
+        expect{get '/auth/github/callback'}.to change{ authentication.reload.name }.from('yinm').to('yinm_updated')
+      end
+
       it 'root_pathにリダイレクトする' do
         get '/auth/github/callback'
         expect(response).to redirect_to(root_path)
