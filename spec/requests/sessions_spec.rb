@@ -37,5 +37,30 @@ RSpec.describe "Sessions", type: :request do
         expect(response).to redirect_to(root_path)
       end
     end
+
+    context "未登録のユーザーのとき" do
+      before do
+        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+          provider: "github",
+          uid: "99999",
+          info: {
+            nickname: "new user",
+            image: "https://example.com/avatar.png",
+          },
+          credentials: {
+            token: "abcd1234",
+          },
+        })
+      end
+
+      it "ユーザーを作る" do
+        expect { get "/auth/github/callback" }.to change(User, :count).by(1)
+      end
+
+      it "root_pathにリダイレクトする" do
+        get "/auth/github/callback"
+        expect(response).to redirect_to(root_path)
+      end
+    end
   end
 end
