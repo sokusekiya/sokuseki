@@ -129,7 +129,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
-    puma (4.0.1)
+    puma (4.1.0)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -258,7 +258,7 @@ DEPENDENCIES
   omniauth-github
   pg (>= 0.18, < 2.0)
   pry
-  puma (~> 4.0)
+  puma (~> 4.1)
   rails (~> 5.2.3)
   rspec-rails (~> 3.8)
   rubocop
