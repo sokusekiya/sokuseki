@@ -7,6 +7,9 @@ class SessionsController < ApplicationController
     authentication = Authentication.find_by(provider: provider, uid: uid)
 
     if authentication
+      name = omniauth.dig('info', 'nickname')
+      authentication.update_attributes(name: name) if name != authentication.name
+
       sign_in authentication.user
     else
       sign_in User.create_with(omniauth)
