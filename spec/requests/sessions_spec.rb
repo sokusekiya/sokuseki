@@ -6,6 +6,16 @@ RSpec.describe "Sessions", type: :request do
     let!(:authentication) { create(:authentication, user: user, uid: "12345") }
 
     context "登録済みのユーザーのとき" do
+      before do
+        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+          provider: "github",
+          uid: "12345",
+          info: {
+            nickname: "yinm",
+          },
+        })
+      end
+
       it "ユーザーを作らない" do
         expect { get "/auth/github/callback" }.not_to change(User, :count)
       end
