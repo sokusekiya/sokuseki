@@ -20,6 +20,10 @@ RSpec.describe "Sessions", type: :request do
         expect { get "/auth/github/callback" }.not_to change(User, :count)
       end
 
+      it "GitHubのusernameに変更がない場合は、更新処理を行わない" do
+        expect { get "/auth/github/callback" }.not_to change { authentication.reload.updated_at }
+      end
+
       it "GitHubのusernameに変更がある場合は、変更に追従する" do
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
           provider: "github",
