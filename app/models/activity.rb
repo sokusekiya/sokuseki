@@ -8,8 +8,8 @@ class Activity < ApplicationRecord
 
   scope :on, ->(string) {
     if string =~ /(\d{4})-(1st|2nd)/
-      year = $1.to_i
-      if $2 == "1st"
+      year = Regexp.last_match[0].to_i
+      if Regexp.last_match[1] == "1st"
         where(acted_at: (Time.new(year))..(Time.new(year, 6).end_of_month))
       else
         where(acted_at: (Time.new(year, 7))..(Time.new(year, 12).end_of_month))
