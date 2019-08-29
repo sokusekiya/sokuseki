@@ -4,6 +4,11 @@ class WelcomeController < ApplicationController
 
     @activities = current_user.activities
 
+    @terms =
+      @activities.map { |a| at = a.acted_at; "%d-%s" % [at.year, %w(1st 2nd)[at.month / 7]] }.uniq.sort.reverse
+    @months =
+      @activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.reverse
+
     @target_duration = (0..12).map { |n| n.month.ago.strftime("%Y-%m") }.reverse
 
     @annual_activities =
