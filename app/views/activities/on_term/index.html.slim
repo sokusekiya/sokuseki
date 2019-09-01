@@ -6,9 +6,16 @@ canvas#js-activities-chart
 input#js-activities type="hidden" value="#{@activities.group(:activity_type).count.to_json}"
 h3
   | Issue と Pull Request を Markdown で
+h4
+  | 全列挙
 p
-  - text = markdown_list(@activities.issue_and_pr.order(:acted_at))
-  = text_area_tag(:markdown, text, rows: 20, style: 'width: 100%;')
+  - text1 = markdown_list(@activities.issue_and_pr.order(:acted_at))
+  = text_area_tag(:markdown, text1, rows: 20, style: 'width: 100%;')
+h4
+  | リポジトリごと
+p
+  - text2 = markdown_list_group_by_repository(@activities.issue_and_pr.order(:acted_at))
+  = text_area_tag(:markdown, text2, rows: 20, style: 'width: 100%;')
 h3
   | 一覧
 ul
