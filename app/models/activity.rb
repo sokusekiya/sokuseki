@@ -27,4 +27,8 @@ class Activity < ApplicationRecord
   scope :issue_and_pr, -> {
     where(activity_type: %w[IssuesEvent PullRequestEvent])
   }
+
+  def repo_name
+    original_data.dig("repo", "name")
+  end
 end
