@@ -15,9 +15,7 @@ module ActivitiesHelper
       activity.activity_type == "IssuesEvent" && activity.original_data["action"] != "opened"
     }.reject { |activity|
       activity.repo_name.nil?
-    }.group_by { |activity|
-      activity.repo_name
-    }.map { |repo_name, repo_activities|
+    }.group_by(&:repo_name).map { |repo_name, repo_activities|
       list =
         repo_activities.map { |activity|
           data = activity.original_data
