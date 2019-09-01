@@ -24,7 +24,7 @@ module ActivitiesHelper
           "- [%<title>s](%<url>s)" % { title: target["title"], url: target["html_url"] }
         }.uniq.join("\n")
 
-      "### #{repo_name}\n\n#{list}\n\n"
+      "### #{repo_name}\n\n#{list}\n"
     }.join("\n")
   end
 end
