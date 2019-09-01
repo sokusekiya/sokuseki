@@ -6,8 +6,18 @@ class Activity < ApplicationRecord
   validates :activity_id, presence: true, uniqueness: { scope: :activity_type }
   validates :acted_at, presence: true
 
-  scope :on, ->(month_string) {
-    where(acted_at: Time.zone.parse("#{month_string}-01").all_month)
+  scope :on, ->(string) {
+    if string =~ /(\d{4})-(1st|2nd)/
+      year = Regexp.last_match[1].to_i
+
+      if Regexp.last_match[2] == "1st"
+        where(acted_at: (Time.new(year))..(Time.new(year, 6).end_of_month))
+      else
+        where(acted_at: (Time.new(year, 7))..(Time.new(year, 12).end_of_month))
+      end
+    else
+      where(acted_at: Time.zone.parse("#{string}-01").all_month)
+    end
   }
 
   scope :in_the_last_year, -> {

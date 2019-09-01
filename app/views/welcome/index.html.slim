@@ -10,9 +10,15 @@
       li
         = "#{activity_type} : #{count}"
   h2
+    | 期ごとに見る
+  ul
+    - @terms.each do |term|
+      li
+        = link_to term, activities_on_term_path(term)
+  h2
     | 月ごとに見る
   ul
-    - @activities.map { |a| a.acted_at.strftime("%Y-%m") }.uniq.sort.reverse.each do |month_string|
+    - @months.each do |month|
       li
-        = link_to month_string, activities_on_month_path(month_string)
+        = link_to month, activities_on_term_path(month)
   = render 'annual_report'
