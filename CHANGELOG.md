@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.0] - 2019-09-03
+### Added
+- GitHub の username 変更に追随する [#142](https://github.com/sokusekiya/sokuseki/pull/142)
+- 期ごとに閲覧できるビューをつくる [#148](https://github.com/sokusekiya/sokuseki/pull/148)
+
+### Changed
+- Rails 6 [#146](https://github.com/sokusekiya/sokuseki/pull/146)
 
 ## [1.3.0] - 2019-06-28
 
