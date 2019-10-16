@@ -22,7 +22,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "mini_racer"
   gem "pry"
-  gem "rspec-rails", "~> 3.8"
+  gem "rspec-rails", "~> 3.9"
   gem "rubocop", require: false
   gem "rubocop-performance"
 end
