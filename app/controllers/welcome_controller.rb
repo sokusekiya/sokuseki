@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     @terms = extract_terms(@activities)
     @months = extract_months(@activities)
     @shared_links = current_user.shared_links.each_with_object({}) do |obj, hash|
-      hash[obj.on] = { expired_at: obj.expired_at, token: obj.token }
+      hash[obj.on] = { expired_at: obj.expired_at.strftime("%m-%d %H:%M"), token: obj.token }
     end
 
     @target_duration = (0..12).map { |n| n.month.ago.strftime("%Y-%m") }.reverse
