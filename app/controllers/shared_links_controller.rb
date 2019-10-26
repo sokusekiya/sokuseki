@@ -5,7 +5,7 @@ class SharedLinksController < ApplicationController
     return redirect_to root_path if current_user.has_available_link_on?(@term)
 
     token = SecureRandom.hex(32)
-    shared_link = SharedLink.new(user: current_user, expired_at: 1.minute.after, on: @term, token: token)
+    shared_link = SharedLink.new(user: current_user, expired_at: 30.minute.after, on: @term, token: token)
     if shared_link.save
       flash[:success] = "共有リンクを作成しました"
     else
