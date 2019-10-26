@@ -28,4 +28,8 @@ class User < ApplicationRecord
       user
     end
   end
+
+  def has_available_link_on?(term)
+    shared_links.available.on(term).exists?
+  end
 end

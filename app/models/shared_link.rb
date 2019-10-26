@@ -4,4 +4,8 @@ class SharedLink < ApplicationRecord
   scope :available, -> {
     where("expired_at > ?", Time.zone.now)
   }
+
+  scope :on, -> term {
+    where(on: term)
+  }
 end
