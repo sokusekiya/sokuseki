@@ -16,6 +16,15 @@ class SharedLinksController < ApplicationController
   end
 
   def destroy
+    return redirect_to root_path if current_user.shared_links.available.where(on: params[:on]).empty?
+
+    if current_user.shared_links.available.on(params[:on]).first.destroy
+      flash[:success] = "招待リンクを作成しました"
+    else
+      flash[:error] = "エラーが発生しました"
+    end
+
+    redirect_to root_path
   end
 
   private
