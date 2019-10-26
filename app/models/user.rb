@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :authentications
   has_many :activities
+  has_many :shared_link
 
   validates :name, presence: true, uniqueness: true
   validates :avatar_url, presence: true
