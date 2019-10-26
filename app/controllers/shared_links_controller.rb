@@ -3,6 +3,7 @@ class SharedLinksController < ApplicationController
 
   def create
     return redirect_to root_path unless current_user.shared_links.available.where(on: params[:on]).empty?
+    
     token = SecureRandom.hex(32)
     shared_link = SharedLink.new(user: current_user, expired_at: Time.zone.tomorrow, on: params[:on], token: token)
     if shared_link.save
