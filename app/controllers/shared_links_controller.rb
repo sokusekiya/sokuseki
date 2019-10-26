@@ -7,18 +7,19 @@ class SharedLinksController < ApplicationController
     shared_link = SharedLink.new(user: current_user, expired_at: Time.zone.tomorrow, on: params[:on], token: token)
     if shared_link.save
       flash[:success] = "招待リンクを作成しました"
-      redirect_to root_path
     else
       flash[:error] = "エラーが発生しました"
-      redirect_to root_path
     end
+
+    redirect_to root_path
   end
 
   def destroy
   end
 
   private
-  def shared_link_params
-    params.permit(:on)
-  end
+
+    def shared_link_params
+      params.permit(:on)
+    end
 end
