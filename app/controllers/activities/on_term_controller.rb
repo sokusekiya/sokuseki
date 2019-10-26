@@ -3,6 +3,7 @@ class Activities::OnTermController < ApplicationController
 
   def index
     user = SharedLink.available.find_by(token: on_term_params[:token])&.user || current_user
+    @owner_name = user.name
     @term_string = params[:term_string]
     @activities = user.activities.on(@term_string)
   end
