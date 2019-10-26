@@ -2,6 +2,8 @@ class SharedLinksController < ApplicationController
   before_action :redirect_to_root_unless_signed_in, :shared_link_params
 
   def create
+    return redirect_to root_path unless current_user.shared_links.available.where(on: params[:on]).empty?
+    
     shared_link = SharedLink.new(user: current_user, expired_at: Time.zone.tomorrow, on: params[:on], token: 'hogehoge')
     if shared_link.save
       flash[:success] = "招待リンクを作成しました"
