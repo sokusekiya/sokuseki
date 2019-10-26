@@ -15,12 +15,12 @@
     - @terms.each do |term|
       li
         = link_to term, activities_on_term_path(term)
-        = link_to ' 共有する', shared_link_path(term: term), method: :post
+        = link_to ' 共有する', shared_link_path(on: term), method: :post
   h2
     | 月ごとに見る
   ul
     - @months.each do |month|
       li
         = link_to month, activities_on_term_path(month)
-        = link_to ' 共有する', shared_link_path(month: month), method: :post
+        = link_to ' 共有する', shared_link_path(on: month), method: :post
   = render 'annual_report'
