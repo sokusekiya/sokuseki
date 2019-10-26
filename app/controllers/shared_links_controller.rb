@@ -9,7 +9,7 @@ class SharedLinksController < ApplicationController
     if shared_link.save
       flash[:success] = "共有リンクを作成しました"
     else
-      flash[:error] = "エラーが発生しました"
+      flash[:error] = "共有リンクの作成に失敗しました"
     end
 
     redirect_to root_path
@@ -21,7 +21,7 @@ class SharedLinksController < ApplicationController
     if current_user.shared_links.available.on(@term).map(&:destroy)
       flash[:success] = "共有リンクを削除しました"
     else
-      flash[:error] = "エラーが発生しました"
+      flash[:error] = "共有リンクの削除に失敗しました"
     end
 
     redirect_to root_path
