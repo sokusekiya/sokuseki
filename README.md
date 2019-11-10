@@ -10,6 +10,7 @@
 
 ```bash
 $ docker-compose up -d
+$ docker-compose run --rm web bundle
 $ docker-compose run --rm web bin/rails db:create db:migrate
 ```
 
