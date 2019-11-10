@@ -26,3 +26,10 @@ $ echo GHE_HOST="github.example.com" >> .env
 ```
 
 Dockerを起動し直してからサインインすると、個人ページが表示できる
+
+## Stub Serverの立ち上げ方
+
+```sh
+$ bin/generate_stub_server.sh
+$ bin/run_stub_server.sh
+```
