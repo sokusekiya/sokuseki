@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "/auth/:provider/callback", to: "sessions#create"
   delete "/sessions", to: "sessions#destroy"
+  get "/shared_link", to: "shared_links#show"
   post "/shared_link", to: "shared_links#create"
   delete "/shared_link", to: "shared_links#destroy"
 
