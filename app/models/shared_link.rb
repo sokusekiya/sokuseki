@@ -11,6 +11,7 @@ class SharedLink < ApplicationRecord
   }
 
   private
+
     def build_param
       self.token = SecureRandom.hex(32)
       self.expired_at = 30.minutes.after

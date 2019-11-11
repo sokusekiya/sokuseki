@@ -1,5 +1,5 @@
 class SharedLinksController < ApplicationController
-  before_action :redirect_to_root_unless_signed_in, :shared_link_params, :set_term
+  before_action :redirect_to_root_unless_signed_in, :shared_link_params, :term
 
   def show
     user = SharedLink.available.find_by(token: shared_link_params[:token])&.user || current_user
@@ -37,7 +37,7 @@ class SharedLinksController < ApplicationController
       params.permit(:on, :token)
     end
 
-    def set_term
+    def term
       @term ||= shared_link_params[:on]
     end
 end
