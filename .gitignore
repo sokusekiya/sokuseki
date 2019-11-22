@@ -28,4 +28,5 @@
 
 .env
 
+/bundled_openapi.yml
 stub_server
