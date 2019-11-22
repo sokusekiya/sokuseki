@@ -9,4 +9,4 @@ get:
           schema:
             type: array
             items:
-              $ref: "../index.yml#/components/schemas/PeopleProperties"
+              $ref: "../openapi.yml#/components/schemas/PeopleProperties"
