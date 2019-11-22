@@ -31,8 +31,8 @@ group :development do
   gem "listen", ">= 3.0.5", "< 3.3"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
-  gem 'yaml_ref_resolver'
   gem "web-console", ">= 3.3.0"
+  gem "yaml_ref_resolver"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
