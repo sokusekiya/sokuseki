@@ -23,10 +23,10 @@ class SharedLinksController < ApplicationController
   def destroy
     return redirect_to root_path unless current_user.has_available_link_on?(@term)
 
-    if current_user.shared_links.available.on(@term).map(&:destroy)
-      flash[:success] = "共有リンクを削除しました"
-    else
+    if current_user.shared_links.available.on(@term).map(&:destroy).include?(false)
       flash[:error] = "共有リンクの削除に失敗しました"
+    else
+      flash[:success] = "共有リンクを削除しました"
     end
 
     redirect_to root_path
