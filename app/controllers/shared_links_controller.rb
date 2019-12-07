@@ -5,6 +5,7 @@ class SharedLinksController < ApplicationController
     user = SharedLink.available.find_by(token: shared_link_params[:token])&.user || current_user
     @owner_name = user.name
     @activities = user.activities.on(@term)
+    @term_string = shared_link_params[:on]
     render "activities/on_term/index"
   end
 
