@@ -5,9 +5,9 @@ class WelcomeController < ApplicationController
     @activities = current_user.activities
     @terms = extract_terms(@activities)
     @months = extract_months(@activities)
-    @shared_links = extract_shared_links(current_user.shared_links)
     @target_duration = (0..12).map { |n| n.month.ago.strftime("%Y-%m") }.reverse
     @annual_activities = extract_annual(@activities)
+    @shared_links = extract_shared_links(current_user.shared_links)
 
     current_user.authentications.each(&:fetch_activities) if @activities.count.zero?
   end
@@ -27,12 +27,6 @@ class WelcomeController < ApplicationController
       }.uniq.sort.reverse
     end
 
-    def extract_shared_links(shared_links)
-      shared_links.each_with_object({}) do |obj, hash|
-        hash[obj.on] = { expired_at: obj.expired_at.strftime("%m-%d %H:%M"), token: obj.token }
-      end
-    end
-
     def extract_annual(activities)
       activities.in_the_last_year.
         group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.
@@ -40,5 +34,11 @@ class WelcomeController < ApplicationController
         acted_month, activity_type = key
         result[activity_type][acted_month] = value
       }
+    end
+
+    def extract_shared_links(shared_links)
+      shared_links.each_with_object({}) do |obj, hash|
+        hash[obj.on] = { expired_at: obj.expired_at.strftime("%m-%d %H:%M"), token: obj.token }
+      end
     end
 end
