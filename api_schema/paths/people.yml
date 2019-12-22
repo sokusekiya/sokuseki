@@ -1,0 +1,12 @@
+get:
+  description: Sokuseki屋さんたち
+  operationId: getPeople
+  responses:
+    "200":
+      description: A paged array of Sokuseki Ya
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../openapi.yml#/components/schemas/PeopleProperties"

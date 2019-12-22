@@ -3,14 +3,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.3"
 
-gem "rails", "~> 6.0.0"
+gem "rails", "~> 6.0.2"
 
 gem "bootsnap", ">= 1.1.0", require: false
 gem "jbuilder", "~> 2.9"
 gem "octokit"
 gem "omniauth-github"
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 4.2"
+gem "puma", "~> 4.3"
 gem "sass-rails", "~> 6.0"
 gem "sentry-raven"
 gem "slim-rails"
@@ -32,6 +32,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console", ">= 3.3.0"
+  gem "yaml_ref_resolver"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
