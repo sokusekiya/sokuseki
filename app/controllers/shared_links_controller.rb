@@ -39,5 +39,4 @@ class SharedLinksController < ApplicationController
     def shared_link_params
       params.permit(:on, :token)
     end
-
 end
