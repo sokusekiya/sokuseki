@@ -4,6 +4,7 @@ class SharedLinksController < ApplicationController
   def show
     shared_link = SharedLink.available.find_by(token: shared_link_params[:token])
     return redirect_to root_path unless shared_link
+
     user = shared_link.user
     @owner_name = user.name
     @term_string = shared_link.on
