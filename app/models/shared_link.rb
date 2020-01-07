@@ -1,6 +1,8 @@
 class SharedLink < ApplicationRecord
   belongs_to :user
-  before_save :build_param
+  before_validation :build_param
+
+  validates :token, presence: true, uniqueness: true, length: { maximum: 255 }
 
   scope :available, -> {
     where("expired_at > ?", Time.current)
