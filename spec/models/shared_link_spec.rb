@@ -19,5 +19,12 @@ RSpec.describe SharedLink, type: :model do
       }
       it { is_expected.to be_invalid }
     end
+
+    context "on is too long" do
+      let(:on) {
+        SecureRandom.hex(512)
+      }
+      it { is_expected.to be_invalid }
+    end
   end
 end
