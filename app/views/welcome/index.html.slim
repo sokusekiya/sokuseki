@@ -15,10 +15,20 @@
     - @terms.each do |term|
       li
         = link_to term, activities_on_term_path(term)
+        - if current_user.has_available_link_on?(term)
+          = link_to " 共有リンク(#{@shared_links[term][:expired_at]} に失効)", shared_link_path(token: @shared_links[term][:token])
+          = link_to ' 失効させる', shared_link_path(token: @shared_links[term][:token]), method: :delete
+        - else
+          = link_to ' 共有する', shared_links_path(on: term), method: :post
   h2
     | 月ごとに見る
   ul
     - @months.each do |month|
       li
         = link_to month, activities_on_term_path(month)
+        - if current_user.has_available_link_on?(month)
+          = link_to " 共有リンク(#{@shared_links[month][:expired_at]} に失効)", shared_link_path(token: @shared_links[month][:token])
+          = link_to ' 失効させる', shared_link_path(token: @shared_links[month][:token]), method: :delete
+        - else
+          = link_to ' 共有する', shared_links_path(on: month), method: :post
   = render 'annual_report'

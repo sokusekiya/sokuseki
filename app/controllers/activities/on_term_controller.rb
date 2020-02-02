@@ -3,6 +3,7 @@ class Activities::OnTermController < ApplicationController
 
   def index
     @term_string = params[:term_string]
+    @owner_name = current_user.name
     @activities = current_user.activities.on(@term_string)
   end
 end

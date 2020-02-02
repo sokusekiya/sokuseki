@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :authentications
   has_many :activities
+  has_many :shared_links
 
   validates :name, presence: true, uniqueness: true
   validates :avatar_url, presence: true
@@ -26,5 +27,9 @@ class User < ApplicationRecord
 
       user
     end
+  end
+
+  def has_available_link_on?(term)
+    shared_links.available.on(term).exists?
   end
 end
