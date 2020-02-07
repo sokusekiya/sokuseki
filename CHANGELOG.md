@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2020-02-07
+### Added
+- アクティビティの一覧、リポジトリごとにわけた表示も用意する [#150](https://github.com/sokusekiya/sokuseki/pull/150)
+- 自分のアクティビティを他者に共有できるリンクを作成できるようにする[#169](https://github.com/sokusekiya/sokuseki/pull/169)
+- OpenAPI 3.0を導入する [#176](https://github.com/sokusekiya/sokuseki/pull/176)
+
+### Changed
+- グラフのラベルも term_string を表示する [#162](https://github.com/sokusekiya/sokuseki/pull/162)
+
+
 ## [1.4.0] - 2019-09-03
 ### Added
 - GitHub の username 変更に追随する [#142](https://github.com/sokusekiya/sokuseki/pull/142)
