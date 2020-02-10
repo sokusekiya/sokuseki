@@ -6,7 +6,7 @@ ruby "2.7.0"
 gem "rails", "~> 6.0.2"
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "jbuilder", "~> 2.9"
+gem "jbuilder", "~> 2.10"
 gem "octokit"
 gem "omniauth-github"
 gem "pg", ">= 0.18", "< 2.0"
