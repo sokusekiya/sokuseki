@@ -274,6 +274,15 @@ Style/HashSyntax:
     - "**/*.rake"
     - "Rakefile"
 
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
 # 平たくしてしまうと条件のグルーピングが脳内モデルとズレやすい
 Style/IfInsideElse:
   Enabled: false
