@@ -46,6 +46,14 @@ Layout/FirstHashElementIndentation:
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 
+# * 警告 120文字
+# * 禁止 160文字
+# のイメージ
+Layout/LineLength:
+  Max: 160
+  Exclude:
+    - "db/migrate/*.rb"
+
 # メソッドチェーン感がより感じられるインデントにする
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
@@ -133,14 +141,6 @@ Metrics/BlockLength:
 Metrics/CyclomaticComplexity:
   Max: 10
 
-# * 警告 120文字
-# * 禁止 160文字
-# のイメージ
-Metrics/LineLength:
-  Max: 160
-  Exclude:
-    - "db/migrate/*.rb"
-
 # 20 行超えるのは migration ファイル以外滅多に無い
 Metrics/MethodLength:
   Max: 20
@@ -203,10 +203,6 @@ Style/AsciiComments:
 
 # ブロックの { .. } / do .. end は好きなように
 Style/BlockDelimiters:
-  Enabled: false
-
-# option 等、明示的にハッシュにした方が分かりやすい場合もある
-Style/BracesAroundHashParameters:
   Enabled: false
 
 # scope が違うとか親 module の存在確認が必要とかデメリットはあるが、
@@ -277,6 +273,15 @@ Style/HashSyntax:
   Exclude:
     - "**/*.rake"
     - "Rakefile"
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
 
 # 平たくしてしまうと条件のグルーピングが脳内モデルとズレやすい
 Style/IfInsideElse:
