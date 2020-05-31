@@ -26,6 +26,9 @@ Layout/ClassStructure:
 Layout/DotPosition:
   EnforcedStyle: trailing
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 # 桁揃えが綺麗にならないことが多いので migration は除外
 Layout/ExtraSpacing:
   Exclude:
@@ -58,6 +61,9 @@ Layout/LineLength:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
 # ブロック変数のところは {|var| ... } じゃなくて { |var| ... }
 Layout/SpaceInsideBlockBraces:
   SpaceBeforeBlockParameters: true
@@ -75,6 +81,9 @@ Layout/EmptyLineAfterGuardClause:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - "spec/**/*_spec.rb"
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
 
 # Style/EmptyCaseCondition と同じく網羅の表現力が empty when を認めた方が高いし、
 # 頻出する対象を最初の when で撥ねるのはパフォーマンス向上で頻出する。
@@ -94,6 +103,12 @@ Lint/EmptyWhen:
 # 定義できるエラーは RuntimeError ではなく StandardError を継承する。
 Lint/InheritException:
   EnforcedStyle: standard_error
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
 
 # * 同名のメソッドがある場合にローカル変数に `_` を付ける
 # * 一時変数として `_` を付ける
@@ -253,6 +268,9 @@ Style/EmptyElse:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/ExponentialNotation:
+  Enabled: true
+
 # いずれかに揃えるのならば `sprintf` や `format` より String#% が好きです
 Style/FormatString:
   EnforcedStyle: percent
@@ -366,6 +384,9 @@ Style/SafeNavigation:
 Style/Semicolon:
   Exclude:
     - "spec/**/*_spec.rb"
+
+Style/SlicingWithRange:
+  Enabled: true
 
 # * 式展開したい場合に書き換えるのが面倒
 # * 文章ではダブルクォートよりもシングルクォートの方が頻出する
