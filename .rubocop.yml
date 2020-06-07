@@ -104,6 +104,9 @@ Lint/EmptyWhen:
 Lint/InheritException:
   EnforcedStyle: standard_error
 
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
 Lint/RaiseException:
   Enabled: true
 
@@ -356,6 +359,12 @@ Style/PerlBackrefs:
 # Hash#has_key? の方が key? よりも意味が通る
 Style/PreferredHashMethods:
   EnforcedStyle: verbose
+
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
 
 # 受け取り側で multiple assignment しろというのを明示
 Style/RedundantReturn:
