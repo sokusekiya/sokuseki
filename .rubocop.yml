@@ -82,10 +82,19 @@ Lint/AmbiguousBlockAssociation:
   Exclude:
     - "spec/**/*_spec.rb"
 
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
 Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyConditionalBody:
   Enabled: true
 
 # Style/EmptyCaseCondition と同じく網羅の表現力が empty when を認めた方が高いし、
@@ -102,18 +111,33 @@ Lint/DuplicateElsifCondition:
 Lint/EmptyWhen:
   Enabled: false
 
+Lint/FloatComparison:
+  Enabled: true
+
 # RuntimeError は「特定の Error を定義できない場合」なので、
 # 定義できるエラーは RuntimeError ではなく StandardError を継承する。
 Lint/InheritException:
   EnforcedStyle: standard_error
 
+Lint/MissingSuper:
+  Enabled: true
+
 Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+Lint/OutOfRangeRegexpRef:
   Enabled: true
 
 Lint/RaiseException:
   Enabled: true
 
+Lint/SelfAssignment:
+  Enabled: true
+
 Lint/StructNewOverride:
+  Enabled: true
+
+Lint/TopLevelReturnWithArgument:
   Enabled: true
 
 # * 同名のメソッドがある場合にローカル変数に `_` を付ける
@@ -121,6 +145,9 @@ Lint/StructNewOverride:
 # というテクニックは頻出する
 Lint/UnderscorePrefixedVariableName:
   Enabled: false
+
+Lint/UnreachableLoop:
+  Enabled: true
 
 # 子クラスで実装させるつもりで中身が
 #   raise NotImplementedError
@@ -310,6 +337,9 @@ Style/EmptyElse:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/ExplicitBlockArgument:
+  Enabled: true
+
 Style/ExponentialNotation:
   Enabled: true
 
@@ -320,6 +350,9 @@ Style/FormatString:
 # まだ対応するには早い
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/GlobalStdStream:
+  Enabled: true
 
 # if 文の中に 3 行程度のブロックを書くぐらいは許容した方が現実的
 # NOTE: https://github.com/bbatsov/rubocop/commit/29945958034db13af9e8ff385ec58cb9eb464596
@@ -391,6 +424,9 @@ Style/NumericLiterals:
 Style/NumericPredicate:
   Enabled: false
 
+Style/OptionalBooleanParameter:
+  Enabled: true
+
 # falsy な場合という条件式の方を意識させたい場合がある。
 # Style/IfUnlessModifier と同じ雰囲気。
 Style/OrAssignment:
@@ -448,7 +484,14 @@ Style/Semicolon:
   Exclude:
     - "spec/**/*_spec.rb"
 
+# dig で揃えた方が読みやすいときがある
+Style/SingleArgumentDig:
+  Enabled: false
+
 Style/SlicingWithRange:
+  Enabled: true
+
+Style/StringConcatenation:
   Enabled: true
 
 # * 式展開したい場合に書き換えるのが面倒
