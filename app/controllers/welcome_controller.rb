@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  TERMS = %w[1st 2nd].freeze
+
   def index
     return unless signed_in?
 
@@ -17,7 +19,7 @@ class WelcomeController < ApplicationController
     def extract_terms(activities)
       activities.map { |a|
         at = a.acted_at
-        "%<year>d-%<term>s" % { year: at.year, term: %w[1st 2nd][at.month / 7] }
+        "%<year>d-%<term>s" % { year: at.year, term: TERMS[at.month / 7] }
       }.uniq.sort.reverse
     end
 
