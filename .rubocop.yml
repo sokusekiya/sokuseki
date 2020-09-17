@@ -1,8 +1,9 @@
 require: rubocop-performance
 
-# 自動生成されるものはチェック対象から除外する
 AllCops:
-  Exclude:
+  NewCops:
+    enable
+  Exclude: # 自動生成されるものはチェック対象から除外する
     - "bin/yarn"
     - "config.ru"
     - "Rakefile"
@@ -11,6 +12,9 @@ AllCops:
     - "db/schema.rb"
 
 #################### Layout ################################
+
+Layout/BeginEndAlignment:
+  Enabled: true
 
 # メソッドをグループ分けして書き順を揃えておくと読みやすくなる。
 # 多少のツラミはあるかもしれない。
@@ -85,16 +89,25 @@ Lint/AmbiguousBlockAssociation:
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: true
 
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
 Lint/DuplicateElsifCondition:
   Enabled: true
 
+Lint/DuplicateRequire:
+  Enabled: true
+
 Lint/DuplicateRescueException:
   Enabled: true
 
 Lint/EmptyConditionalBody:
+  Enabled: true
+
+Lint/EmptyFile:
   Enabled: true
 
 # Style/EmptyCaseCondition と同じく網羅の表現力が empty when を認めた方が高いし、
@@ -112,6 +125,9 @@ Lint/EmptyWhen:
   Enabled: false
 
 Lint/FloatComparison:
+  Enabled: true
+
+Lint/IdentityComparison:
   Enabled: true
 
 # RuntimeError は「特定の Error を定義できない場合」なので、
@@ -140,6 +156,9 @@ Lint/StructNewOverride:
 Lint/TopLevelReturnWithArgument:
   Enabled: true
 
+Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
 # * 同名のメソッドがある場合にローカル変数に `_` を付ける
 # * 一時変数として `_` を付ける
 # というテクニックは頻出する
@@ -155,6 +174,12 @@ Lint/UnreachableLoop:
 # (raise せずに中身が空だと IgnoreEmptyMethods でセーフ)
 Lint/UnusedMethodArgument:
   Enabled: false
+
+Lint/UselessMethodDefinition:
+  Enabled: true
+
+Lint/UselessTimes:
+  Enabled: true
 
 # select 以外では引っかからないと思うので
 # mutating_methods のチェックを有効に。
@@ -315,6 +340,9 @@ Style/CollectionMethods:
     inject: "inject"
     reduce: "inject"
 
+Style/CombinableLoops:
+  Enabled: true
+
 # ドキュメントの無い public class を許可する
 Style/Documentation:
   Enabled: false
@@ -393,6 +421,9 @@ Style/IfInsideElse:
 Style/IfUnlessModifier:
   Enabled: false
 
+Style/KeywordParametersOrder:
+  Enabled: true
+
 # scope 等は複数行でも lambda ではなく ->{} で揃えた方が見た目が綺麗
 Style/Lambda:
   EnforcedStyle: literal
@@ -467,6 +498,9 @@ Style/RedundantReturn:
 Style/RedundantSelf:
   Enabled: false
 
+Style/RedundantSelfAssignment:
+  Enabled: true
+
 # 無指定だと StandardError を rescue するのは常識の範疇なので。
 Style/RescueStandardError:
   EnforcedStyle: implicit
@@ -492,6 +526,9 @@ Style/SingleArgumentDig:
   Enabled: false
 
 Style/SlicingWithRange:
+  Enabled: true
+
+Style/SoleNestedConditional:
   Enabled: true
 
 Style/StringConcatenation:
