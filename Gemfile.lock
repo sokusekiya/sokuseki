@@ -303,7 +303,7 @@ DEPENDENCIES
   yaml_ref_resolver
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.2
+   2.2.3
