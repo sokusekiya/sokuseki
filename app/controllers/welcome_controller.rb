@@ -31,7 +31,7 @@ class WelcomeController < ApplicationController
 
     def extract_annual(activities)
       activities.in_the_last_year.
-        group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order("TO_CHAR(acted_at, 'YYYY-MM')").count.
+        group("TO_CHAR(acted_at, 'YYYY-MM')", :activity_type).order(Arel.sql("TO_CHAR(acted_at, 'YYYY-MM')")).count.
         each_with_object(Hash.new { |h, k| h[k] = {} }) { |(key, value), result|
         acted_month, activity_type = key
         result[activity_type][acted_month] = value
