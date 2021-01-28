@@ -9,6 +9,7 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "jbuilder", "~> 2.11"
 gem "octokit"
 gem "omniauth-github"
+gem "omniauth-rails_csrf_protection"
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 5.2"
 gem "sass-rails", "~> 6.0"

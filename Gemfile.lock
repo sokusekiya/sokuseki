@@ -142,6 +142,9 @@ GEM
     omniauth-oauth2 (1.7.1)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
@@ -290,6 +293,7 @@ DEPENDENCIES
   mini_racer
   octokit
   omniauth-github
+  omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 5.2)
