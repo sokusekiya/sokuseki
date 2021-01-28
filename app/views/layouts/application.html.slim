@@ -24,4 +24,6 @@ html
             p.before-signed-in__text
               = "つかまえよう あなたの足跡"
             .before-signed-in__button-area
-              = link_to "GitHub Enterprise でサインイン", "/auth/github", class:'button is-link is-medium'
+              = form_tag("/auth/github", method: "post") do
+                button.button.is-link.is-medium
+                  | GitHub Enterprise Server でサインイン
