@@ -36,11 +36,11 @@ jobs:
       - name: Setup Database
         env:
           RAILS_ENV: test
-        run: bundle exec rspec
+        run: bundle exec rake db:setup
       - name: Test
         env:
           RAILS_ENV: test
-        run: bundle exec rake test
+        run: bundle exec rspec
       - name: action-slack
         uses: 8398a7/action-slack@v3.6.1
         if: always()
