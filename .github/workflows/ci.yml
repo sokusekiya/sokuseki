@@ -1,0 +1,59 @@
+name: CI
+on:
+  [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: password
+    strategy:
+      matrix:
+        ruby: ["3.0.0"]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@master
+        with:
+          ruby-version : ${{ matrix.ruby }}
+      - name: Set up bundler
+        run: gem install bundler
+      - name: Cache gems
+        uses: actions/cache@preview
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Run bundle install
+        run: bundle install --jobs=4
+      - name: Rubocop
+        run: bundle exec rubocop -c .rubocop.yml
+      - name: Setup Database
+        env:
+          RAILS_ENV: test
+        run: bundle exec rake db:setup
+      - name: Test
+        env:
+          RAILS_ENV: test
+        run: bundle exec rspec
+      - name: action-slack
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: custom
+          fields: workflow,job,commit,repo,ref,author,took
+          custom_payload: |
+            {
+              attachments: [{
+                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`,
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ github.token }}
