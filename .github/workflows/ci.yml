@@ -19,21 +19,15 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@master
         with:
-          ruby-version : ${{ matrix.ruby }}
+          ruby-version: 3.0.0
+          bundler-cache: true
       - name: Set up bundler
         run: gem install bundler
-      - name: Cache gems
-        uses: actions/cache@preview
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
       - name: Run bundle install
         run: bundle install --jobs=4
       - name: Rubocop
         run: bundle exec rubocop -c .rubocop.yml
-      - name: Setup Database
+      - name: Set up Database
         env:
           RAILS_ENV: test
         run: bundle exec rake db:setup
@@ -41,7 +35,7 @@ jobs:
         env:
           RAILS_ENV: test
         run: bundle exec rspec
-      - name: action-slack
+      - name: Notify to Slack
         uses: 8398a7/action-slack@v3
         if: always()
         with:
@@ -51,7 +45,7 @@ jobs:
             {
               attachments: [{
                 color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} succeeded in ${process.env.AS_TOOK}`,
+                text: `${process.env.AS_WORKFLOW}\n${process.env.AS_JOB} (${process.env.AS_COMMIT}) of ${process.env.AS_REPO}@${process.env.AS_REF} by ${process.env.AS_AUTHOR} ${{ job.status }} in ${process.env.AS_TOOK}`,
               }]
             }
         env:
