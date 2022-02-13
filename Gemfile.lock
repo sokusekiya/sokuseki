@@ -294,7 +294,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yaml_ref_resolver (0.6.0)
+    yaml_ref_resolver (0.7.0)
     zeitwerk (2.5.4)
 
 PLATFORMS
