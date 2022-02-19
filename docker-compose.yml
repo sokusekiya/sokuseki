@@ -3,7 +3,7 @@ services:
   database:
     image: postgres:10.4
     volumes:
-      - ./tmp/db:/var/lib/postgresql/data
+      - database-volume:/var/lib/postgresql/data
   web:
     build: .
     command: bash -c 'rm tmp/pids/server.pid 2>/dev/null; bundle exec rails server -b "0.0.0.0"'
@@ -20,4 +20,6 @@ services:
     stdin_open: true
 volumes:
   bundle-volume:
+    driver: local
+  database-volume:
     driver: local
