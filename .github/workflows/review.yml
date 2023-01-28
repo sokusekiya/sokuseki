@@ -4,11 +4,13 @@ jobs:
   brakeman:
     name: runner / brakeman
     runs-on: ubuntu-latest
+    container:
+      image: ruby:3.2
     steps:
       - name: Check out code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
       - name: brakeman
-        uses: reviewdog/action-brakeman@v1
+        uses: reviewdog/action-brakeman@v2
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
