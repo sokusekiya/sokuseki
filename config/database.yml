@@ -17,6 +17,7 @@ test:
 
 production:
   <<: *default
-  database: sokuseki_production
-  username: sokuseki
+  host: <%= ENV["DB_HOST"] || "127.0.0.1" %>
+  database: <%= ENV["DB_NAME"] || "sokuseki_production" %>
+  username: <%= ENV["DB_USER"] || "sokuseki" %>
   password: <%= ENV['SOKUSEKI_DATABASE_PASSWORD'] %>
