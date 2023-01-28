@@ -4,6 +4,8 @@ jobs:
   brakeman:
     name: runner / brakeman
     runs-on: ubuntu-latest
+    container:
+      image: ruby:3.2
     steps:
       - name: Check out code
         uses: actions/checkout@v3
