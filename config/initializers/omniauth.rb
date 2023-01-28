@@ -1,7 +1,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  ghe_host = ENV["GHE_HOST"]
+  ghe_host = ENV.fetch("GHE_HOST", nil)
 
-  provider :github, ENV["GHE_APP_KEY"], ENV["GHE_APP_SECRET"], {
+  provider :github, ENV.fetch("GHE_APP_KEY", nil), ENV.fetch("GHE_APP_SECRET", nil), {
     client_options: {
       site: "https://#{ghe_host}/api/v3",
       authorize_url: "https://#{ghe_host}/login/oauth/authorize",
