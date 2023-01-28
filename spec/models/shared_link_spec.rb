@@ -7,7 +7,7 @@ RSpec.describe SharedLink, type: :model do
   let(:on) { "2019-12" }
 
   subject do
-    SharedLink.new(token: token, expired_at: expired_at, on: on, user: user)
+    SharedLink.new(token:, expired_at:, on:, user:)
   end
 
   describe "validation" do

@@ -29,8 +29,8 @@ class Authentication < ApplicationRecord
       activity = Activity.find_or_initialize_by(
         user_id: self.user_id,
         authentication_id: self.id,
-        activity_id: activity_id,
-        activity_type: activity_type,
+        activity_id:,
+        activity_type:,
       )
 
       acted_at = event.created_at
@@ -46,7 +46,7 @@ class Authentication < ApplicationRecord
   end
 
   def github_client
-    @github_client ||= Octokit::Client.new(access_token: access_token)
+    @github_client ||= Octokit::Client.new(access_token:)
     @github_client.auto_paginate = true
 
     @github_client

@@ -39,6 +39,6 @@ module Sokuseki
 end
 
 Raven.configure do |config|
-  config.dsn = ENV["SENTRY_DSN"]
+  config.dsn = ENV.fetch("SENTRY_DSN", nil)
   config.environments = %w[production]
 end

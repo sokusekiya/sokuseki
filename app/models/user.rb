@@ -15,14 +15,14 @@ class User < ApplicationRecord
 
     ApplicationRecord.transaction do
       user = User.create(
-        name: name,
-        avatar_url: avatar_url,
+        name:,
+        avatar_url:,
       )
       user.authentications.create(
-        provider: provider,
-        uid: uid,
-        name: name,
-        access_token: access_token,
+        provider:,
+        uid:,
+        name:,
+        access_token:,
       )
 
       user

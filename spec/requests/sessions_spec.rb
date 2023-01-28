@@ -4,7 +4,7 @@ RSpec.describe "Sessions", type: :request do
   describe "GET /auth/github/callback" do
     context "登録済みのユーザーのとき" do
       let(:user) { create(:user) }
-      let!(:authentication) { create(:authentication, user: user, uid: "12345") }
+      let!(:authentication) { create(:authentication, user:, uid: "12345") }
 
       before do
         OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
