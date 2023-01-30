@@ -17,14 +17,14 @@ class WelcomeController < ApplicationController
   private
 
     def extract_terms(activities)
-      activities.map { |a|
+      Parallel.map(activities) { |a|
         at = a.acted_at
         "%<year>d-%<term>s" % { year: at.year, term: TERMS[at.month / 7] }
       }.uniq.sort.reverse
     end
 
     def extract_months(activities)
-      activities.map { |a|
+      Parallel.map(activities) { |a|
         a.acted_at.strftime("%Y-%m")
       }.uniq.sort.reverse
     end

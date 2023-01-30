@@ -357,6 +357,7 @@ DEPENDENCIES
   octokit
   omniauth-github
   omniauth-rails_csrf_protection
+  parallel
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 6.0)
