@@ -5,4 +5,5 @@ WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
+ENV ELASTIC_APM_ENABLED false
 COPY . /myapp
