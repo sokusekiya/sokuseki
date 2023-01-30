@@ -30,6 +30,7 @@ class User < ApplicationRecord
   end
 
   def has_available_link_on?(term)
-    shared_links.available.on(term).exists?
+    @shared_links ||= shared_links.available.all
+    @shared_links.find { |s| s.on == term }
   end
 end
