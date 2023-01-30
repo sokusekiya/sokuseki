@@ -14,6 +14,7 @@ services:
       - "3000:3000"
     environment:
       TZ: "Asia/Tokyo"
+      ELASTIC_APM_ENABLED: "false"
     depends_on:
       - database
     tty: true
