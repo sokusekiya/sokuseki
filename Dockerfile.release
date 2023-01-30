@@ -5,6 +5,7 @@ RUN apt update -qqy  && apt upgrade -qqy \
     && rm -rf /var/lib/apt/lists/*
 
 ENV PATH /opt/node/bin:$PATH
+ENV ELASTIC_APM_ENABLED false
 RUN useradd -m -u 1000 rails
 RUN mkdir -p /app /app/log /app/tmp && chown -R rails /app
 USER rails
