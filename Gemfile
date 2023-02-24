@@ -31,7 +31,7 @@ end
 
 group :development do
   gem "listen", ">= 3.0.5", "< 3.9"
-  gem "spring"
+  gem "spring", "~> 4.1"
   gem "spring-watcher-listen"
   gem "web-console", ">= 3.3.0"
   gem "yaml_ref_resolver"

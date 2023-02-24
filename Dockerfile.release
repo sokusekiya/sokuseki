@@ -17,7 +17,7 @@ COPY --chown=rails Gemfile Gemfile.lock /app/
 RUN bundle config set app_config .bundle
 RUN bundle config set path .cache/bundle
 RUN --mount=type=cache,uid=1000,target=/app/.cache/bundle \
-    bundle install && \
+    bundle install --without=development && \
     mkdir -p vendor && \
     cp -ar .cache/bundle vendor/bundle
 RUN bundle config set path vendor/bundle
