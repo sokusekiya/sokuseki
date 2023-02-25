@@ -13,6 +13,9 @@ RSpec.describe "Sessions", type: :request do
           info: {
             nickname: "yinm",
           },
+          credentials: {
+            token: "abcde12345",
+          },
         })
       end
 
@@ -30,6 +33,24 @@ RSpec.describe "Sessions", type: :request do
           uid: "12345",
           info: {
             nickname: "yinm_updated",
+          },
+          credentials: {
+            token: "abcde12345",
+          },
+        })
+
+        expect { get "/auth/github/callback" }.to change { authentication.reload.name }.from("yinm").to("yinm_updated")
+      end
+
+      it "GitHubのaccess tokenに変更がある場合は、変更に追従する" do
+        OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+          provider: "github",
+          uid: "12345",
+          info: {
+            nickname: "yinm_updated",
+          },
+          credentials: {
+            token: "update_token",
           },
         })
 
