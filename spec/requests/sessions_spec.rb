@@ -13,6 +13,9 @@ RSpec.describe "Sessions", type: :request do
           info: {
             nickname: "yinm",
           },
+          credentials: {
+            token: "abcde12345",
+          },
         })
       end
 
@@ -30,6 +33,9 @@ RSpec.describe "Sessions", type: :request do
           uid: "12345",
           info: {
             nickname: "yinm_updated",
+          },
+          credentials: {
+            token: "abcde12345",
           },
         })
 
