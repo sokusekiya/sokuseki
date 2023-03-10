@@ -7,10 +7,7 @@ class SessionsController < ApplicationController
     authentication = Authentication.find_by(provider:, uid:)
 
     if authentication
-      authentication.update(
-        name: omniauth.dig("info", "nickname"),
-        access_token: omniauth.dig("credentials", "token"),
-      )
+      authentication.update(name: omniauth.dig("info", "nickname"))
 
       sign_in authentication.user
     else
