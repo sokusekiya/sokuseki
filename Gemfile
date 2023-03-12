@@ -36,5 +36,4 @@ group :development do
   gem "web-console", ">= 3.3.0"
   gem "yaml_ref_resolver"
 end
-gem "elastic-apm"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
