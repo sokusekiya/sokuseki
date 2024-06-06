@@ -17,6 +17,6 @@ class SharedLink < ApplicationRecord
 
     def build_param
       self.token = SecureRandom.hex(32)
-      self.expired_at = 30.minutes.after
+      self.expired_at = ENV.fetch("SOKUSEKI_SHARED_LINK_TTL", 30).to_i.minutes.after
     end
 end
