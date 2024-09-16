@@ -6,7 +6,7 @@ ruby "3.2.2"
 gem "rails", "~> 7.2.1"
 
 gem "bootsnap", ">= 1.1.0", require: false
-gem "jbuilder", "~> 2.12"
+gem "jbuilder", "~> 2.13"
 gem "octokit"
 gem "omniauth-github"
 gem "omniauth-rails_csrf_protection"
