@@ -142,7 +142,7 @@ GEM
     mini_racer (0.16.0)
       libv8-node (~> 18.19.0.0)
     minitest (5.25.4)
-    msgpack (1.7.2)
+    msgpack (1.8.2)
     multi_xml (0.6.0)
     net-http (0.4.1)
       uri
